@@ -5,10 +5,10 @@ info:
   title: "Bundesamt für Bevölkerungsschutz: NINA API"
 
 servers:
-  - url: "https://warnung.bund.de"
+  - url: "https://warnung.bund.de/api31/"
 
 paths:
-  /api31/dashboard/{AGS}.json:
+  /dashboard/{AGS}.json:
     get:
       summary: Meldungsübersicht nach AGS
       responses:
@@ -27,69 +27,294 @@ paths:
           description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
           example: 091620000000
 
+  /appdata/covid/covidrules/DE/{AGS}.json:
+    get:
+      summary: Corona Regelungen nach AGS
+      responses:
+        '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AGSCovidRules'
+      parameters:
+        - in: path
+          required: true
+          name: AGS
+          schema:
+            type: string
+          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+          example: 091620000000
+
+
+
+  /katwarn/mapData.json:
+    get:
+      summary: Katwarn Medlungen
+      responses:
+        '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MapWarnings'
+                  
+
+  /biwapp/mapData.json:
+    get:
+      summary: Biwapp Medlungen
+      responses:
+        '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MapWarnings'
+                  
+  /mowas/mapData.json:
+    get:
+      summary: Mowas Medlungen
+      responses:
+        '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MapWarnings'
+    
+          
 components: 
     schemas:
-     AGSOverviewResult: 
-      type: array
-      items: 
+      MapWarnings: 
+        type: array
+        items: 
+          type: object
+          properties: 
+            id: 
+              type: string
+              example: kat.60e96f0b62aefd198d9c0956_public_topics
+            version: 
+              type: integer
+              format: int32
+              example: 9
+            startDate: 
+              type: string
+              format: date-time
+              example: 2021-07-10T11:57:33+02:00
+            severity: 
+              type: string
+              example: Severe
+            type: 
+              type: string
+              example: Alert
+            i18nTitle: 
+              type: object
+              properties: 
+                de: 
+                  type: string
+                  example: "Burgenlandkreis meldet: Warnung Sonderfall. Gültig ab 10.07.2021 11:58."
+      AGSOverviewResult: 
+        type: array
+        items: 
+          type: object
+          properties: 
+            id: 
+              type: string
+              example: mow.DE-NW-BN-SE030-20201014-30-000
+            payload: 
+              type: object
+              properties: 
+                version: 
+                  type: integer
+                  format: int32
+                  example: 2
+                type: 
+                  type: string
+                  example: ALERT
+                id: 
+                  type: string
+                  example: mow.DE-NW-BN-SE030-20201014-30-000
+                hash: 
+                  type: string
+                  example: d72526da941f98cb79f25dc3f9b56474a313e2161fda46e91f146139811eca4a
+                data: 
+                  type: object
+                  properties: 
+                    headline: 
+                      type: string
+                      example: Coronavirus; Informationen des Bundesministeriums für  Gesundheit
+                    provider: 
+                      type: string
+                      example: MOWAS
+                    severity: 
+                      type: string
+                      example: Minor
+                    msgType: 
+                      type: string
+                      example: Update
+                    transKeys: 
+                      type: object
+                      properties: 
+                        event: 
+                          type: string
+                          example: BBK-EVC-040
+                    area: 
+                      type: object
+                      properties: 
+                        type: 
+                          type: string
+                          example: ZGEM
+                        data: 
+                          type: string
+                          example: 1+11057100001
+            i18nTitle: 
+              type: object
+              properties: 
+                de: 
+                  type: string
+                  example: Coronavirus; Informationen des Bundesministeriums für Gesundheit
+            sent: 
+              type: string
+              format: date-time
+              example: 2020-10-14T16:35:21+02:00
+              
+      AGSCovidRules: 
         type: object
         properties: 
-          id: 
+          key: 
             type: string
-            example: mow.DE-NW-BN-SE030-20201014-30-000
-          payload: 
+            example: 091620000000
+          level: 
             type: object
             properties: 
-              version: 
-                type: integer
-                format: int32
-                example: 2
-              type: 
+              headline: 
                 type: string
-                example: ALERT
-              id: 
+                example: Infektionsgefahr Stufe 2
+              range: 
                 type: string
-                example: mow.DE-NW-BN-SE030-20201014-30-000
-              hash: 
+                example: "Sieben-Tage-Inzidenz Kreis: 204 Sieben-Tage-Inzidenz Bundesland: 109"
+              backgroundColor: 
                 type: string
-                example: d72526da941f98cb79f25dc3f9b56474a313e2161fda46e91f146139811eca4a
-              data: 
+                example: #FFF280
+              textColor: 
+                type: string
+                example: #000000
+          generalInfo: 
+            type: string
+            example: "<p><span>Grundsätzlich gilt: </span></p><p><span>Abstand + Hygiene + Maske im Alltag + Corona-Warn-App + Lüften</span></p><p><span data-stringify-type=paragraph-break/><span>Keine Testpflicht + keine Ausgangsbeschränkungen + keine Kontaktbeschränkungen für Geimpfte und Genesene</span></p>"
+          rules: 
+            type: array
+            items: 
+              type: object
+              properties: 
+                id: 
+                  type: string
+                  example: vaccinations
+                caption: 
+                  type: string
+                  example: Impfen
+                text: 
+                  type: string
+                  example: <p><span>Keine Priorisierung bei der Corona-Schutzimpfung in Arztpraxen und Impfzentren. Nähere Informationen zur Schutzimpfung gegen das Corona-Virus erhalten Sie über die bundesweite Hotline 116117.</span></p><p><span><a class=RichTextExtLink ExternalLink data-gsb-doc-origin=36a6263b-25b9-40c2-8b51-8cfc1eb76506 href=https://www.stmgp.bayern.de/coronavirus/impfung/>Hier finden Sie Informationen aus Ihrem Bundesland.</a></span></p>
+                source: 
+                  type: string
+                  example: LAND
+                icon: 
+                  type: object
+                  properties: 
+                    src: 
+                      type: string
+                      example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/91760ea61c38f87127b6052c266820f9da9b7f5ed7cf473df55cd2a888b6f2e1.png
+                    hash: 
+                      type: string
+                      example: 91760ea61c38f87127b6052c266820f9da9b7f5ed7cf473df55cd2a888b6f2e1
+          regulations: 
+            type: object
+            properties: 
+              validFromUntil: 
+                type: string
+                example: Gültig von $validFrom bis $validUntil
+              sections: 
                 type: object
                 properties: 
-                  headline: 
-                    type: string
-                    example: Coronavirus; Informationen des Bundesministeriums für  Gesundheit
-                  provider: 
-                    type: string
-                    example: MOWAS
-                  severity: 
-                    type: string
-                    example: Minor
-                  msgType: 
-                    type: string
-                    example: Update
-                  transKeys: 
+                  BUND: 
                     type: object
                     properties: 
-                      event: 
+                      caption: 
                         type: string
-                        example: BBK-EVC-040
-                  area: 
+                        example: Bundesverordnung
+                      url: 
+                        type: string
+                        example: https://www.bundesregierung.de/breg-de/themen/coronavirus/
+                      icon: 
+                        type: object
+                        properties: 
+                          src: 
+                            type: string
+                            example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/416f1bd25b6d291150087053a5713885fc695e39f1b7a9cffcb4eefc1fb92fca.png
+                          hash: 
+                            type: string
+                            example: 416f1bd25b6d291150087053a5713885fc695e39f1b7a9cffcb4eefc1fb92fca
+                  LAND: 
                     type: object
                     properties: 
-                      type: 
+                      caption: 
                         type: string
-                        example: ZGEM
-                      data: 
+                        example: Landesverordnung
+                      url: 
                         type: string
-                        example: 1+11057100001
-          i18nTitle: 
-            type: object
-            properties: 
-              de: 
-                type: string
-                example: Coronavirus; Informationen des Bundesministeriums für Gesundheit
-          sent: 
-            type: string
-            format: date-time
-            example: 2020-10-14T16:35:21+02:00
+                        example: https://www.stmgp.bayern.de/coronavirus/rechtsgrundlagen
+                      validFrom: 
+                        type: string
+                        format: date-time
+                        example: 2021-07-01T00:00:00+02:00
+                      validUntil: 
+                        type: string
+                        format: date-time
+                        example: 2021-07-28T23:59:59+02:00
+                      icon: 
+                        type: object
+                        properties: 
+                          src: 
+                            type: string
+                            example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/1f65c785497bbdfddcb9de3a39c4b2ed1aee58d41afd4a3f9a62cfb9f2942748.png
+                          hash: 
+                            type: string
+                            example: 1f65c785497bbdfddcb9de3a39c4b2ed1aee58d41afd4a3f9a62cfb9f2942748
+                  KREIS: 
+                    type: object
+                    properties: 
+                      caption: 
+                        type: string
+                        example: Kreisverordnung
+                      url: 
+                        type: string
+                        example: https://www.muenchen.de/rathaus/Stadtverwaltung/Referat-fuer-Gesundheit-und-Umwelt/Infektionsschutz/Neuartiges_Coronavirus.html#AB
+                      validFrom: 
+                        type: string
+                        format: date-time
+                        example: 2021-06-09T00:00:00+02:00
+                      icon: 
+                        type: object
+                        properties: 
+                          src: 
+                            type: string
+                            example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/26503a33d452d1ce067b21e3d0800887eb7ca872665829b21cb07899225e469d.png
+                          hash: 
+                            type: string
+                            example: 26503a33d452d1ce067b21e3d0800887eb7ca872665829b21cb07899225e469d
+          common: 
+            type: array
+            items: 
+              type: object
+              properties: 
+                id: 
+                  type: string
+                  example: contact
+                caption: 
+                  type: string
+                  example: Ansprechpartner
+                text: 
+                  type: string
+                  example: <p>Quellen sind jeweils die Landesregierungen bzw. die örtlichen Behörden auf Kreisebene oder in den Stadtkreisen. Sollten Sie zu den Verordnungen oder Verfügungen Fragen haben informieren Sie sich bitte auf den Webseiten Ihrer jeweiligen Kreis- oder Stadtverwaltung oder wenden Sie sich bitte an die entsprechenden Bürgerkontakte.</p>
+    
