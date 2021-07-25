@@ -1,0 +1,95 @@
+openapi: "3.0.0"
+info:
+  description: "Erhalten Sie wichtige Warnmeldungen des Bevölkerungsschutzes für Gefahrenlagen wie zum Beispiel Gefahrstoffausbreitung oder Unwetter per Programmierschnittstelle."
+  version: "1.0.0"
+  title: "Bundesamt für Bevölkerungsschutz: NINA API"
+
+servers:
+  - url: "https://warnung.bund.de"
+
+paths:
+  /api31/dashboard/{AGS}.json:
+    get:
+      summary: Meldungsübersicht nach AGS
+      responses:
+        '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AGSOverviewResult'
+      parameters:
+        - in: path
+          required: true
+          name: AGS
+          schema:
+            type: string
+          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+          example: 091620000000
+
+components: 
+    schemas:
+     AGSOverviewResult: 
+      type: array
+      items: 
+        type: object
+        properties: 
+          id: 
+            type: string
+            example: mow.DE-NW-BN-SE030-20201014-30-000
+          payload: 
+            type: object
+            properties: 
+              version: 
+                type: integer
+                format: int32
+                example: 2
+              type: 
+                type: string
+                example: ALERT
+              id: 
+                type: string
+                example: mow.DE-NW-BN-SE030-20201014-30-000
+              hash: 
+                type: string
+                example: d72526da941f98cb79f25dc3f9b56474a313e2161fda46e91f146139811eca4a
+              data: 
+                type: object
+                properties: 
+                  headline: 
+                    type: string
+                    example: Coronavirus; Informationen des Bundesministeriums für  Gesundheit
+                  provider: 
+                    type: string
+                    example: MOWAS
+                  severity: 
+                    type: string
+                    example: Minor
+                  msgType: 
+                    type: string
+                    example: Update
+                  transKeys: 
+                    type: object
+                    properties: 
+                      event: 
+                        type: string
+                        example: BBK-EVC-040
+                  area: 
+                    type: object
+                    properties: 
+                      type: 
+                        type: string
+                        example: ZGEM
+                      data: 
+                        type: string
+                        example: 1+11057100001
+          i18nTitle: 
+            type: object
+            properties: 
+              de: 
+                type: string
+                example: Coronavirus; Informationen des Bundesministeriums für Gesundheit
+          sent: 
+            type: string
+            format: date-time
+            example: 2020-10-14T16:35:21+02:00
