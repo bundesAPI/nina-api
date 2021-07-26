@@ -50,7 +50,7 @@ paths:
 
   /katwarn/mapData.json:
     get:
-      summary: Katwarn Medlungen
+      summary: Katwarn Meldungen
       responses:
         '200':
             description: OK
@@ -62,7 +62,7 @@ paths:
 
   /biwapp/mapData.json:
     get:
-      summary: Biwapp Medlungen
+      summary: Biwapp Meldungen
       responses:
         '200':
             description: OK
@@ -73,7 +73,7 @@ paths:
                   
   /mowas/mapData.json:
     get:
-      summary: Mowas Medlungen
+      summary: Mowas Meldungen
       responses:
         '200':
             description: OK
