@@ -5,7 +5,7 @@ info:
   title: "Bundesamt für Bevölkerungsschutz: NINA API"
 
 servers:
-  - url: "https://warnung.bund.de/api31/"
+  - url: "https://warnung.bund.de/api31"
 
 paths:
   /dashboard/{AGS}.json:
