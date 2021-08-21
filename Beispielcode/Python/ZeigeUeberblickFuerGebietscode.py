@@ -28,3 +28,7 @@ for warnung in warnungen:
     # diese Beispiel liest nur das erste Info Element aus:
     meldung = meldung["info"][0]["event"]+": "+meldung["info"][0]["headline"]+" (Sent: "+meldung["sent"]+", Status: "+meldung["status"]+")"
     print("- "+meldung)
+
+### Beispiel-Output:
+# - Gefahreninformation: Coronavirus: Informationen des Bundesministeriums für Gesundheit (Sent: 2020-10-14T16:35:21+02:00, Status: Actual)
+# - Gefahreninformation: Vorübergehende Änderung der Trinkwasserqualität: Chlorung besteht weiterhin (Sent: 2020-08-28T11:00:08+02:00, Status: Actual)
