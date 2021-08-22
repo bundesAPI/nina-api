@@ -17,7 +17,7 @@
                 dom_id: "#openapi",
                requestInterceptor: function(req) {   
                     var mapping = {
-                        "warnung.bund.de/api31": "nina.api.proxy.bund.dev"
+                        "warnung.bund.de": "nina.api.proxy.bund.dev"
                     }
                     if(this.url !== "openapi.yaml") {
                        var url = new URL(req.url);
