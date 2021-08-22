@@ -15,10 +15,14 @@
             const ui = SwaggerUIBundle({
                 url: "openapi.yaml", 
                 dom_id: "#openapi",
-                requestInterceptor: function(req) {   
+               requestInterceptor: function(req) {   
+                    var mapping = {
+                        "warnung.bund.de/api31": "nina.api.proxy.bund.dev"
+                    }
                     if(this.url !== "openapi.yaml") {
-                       var pathname = new URL(req.url).pathname;
-                       req.url = "https://nina.api.proxy.bund.dev" + pathname;
+                       var url = new URL(req.url);
+                       url.hostname = mapping[url.hostname];
+                       req.url = url.href;
                     }
                     return req;
               },
