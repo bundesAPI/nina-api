@@ -195,10 +195,10 @@ components:
                 example: "Sieben-Tage-Inzidenz Kreis: 204 Sieben-Tage-Inzidenz Bundesland: 109"
               backgroundColor: 
                 type: string
-                example: #FFF280
+                example: "#FFF280"
               textColor: 
                 type: string
-                example: #000000
+                example: "#000000"
           generalInfo: 
             type: string
             example: "<p><span>Grundsätzlich gilt: </span></p><p><span>Abstand + Hygiene + Maske im Alltag + Corona-Warn-App + Lüften</span></p><p><span data-stringify-type=paragraph-break/><span>Keine Testpflicht + keine Ausgangsbeschränkungen + keine Kontaktbeschränkungen für Geimpfte und Genesene</span></p>"
