@@ -24,8 +24,8 @@ paths:
           name: AGS
           schema:
             type: string
-          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
-          example: 091620000000
+          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden. 
+          example: "091620000000"
 
   /appdata/covid/covidrules/DE/{AGS}.json:
     get:
@@ -44,7 +44,7 @@ paths:
           schema:
             type: string
           description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
-          example: 091620000000
+          example: "091620000000"
 
   /appdata/covid/covidinfos/DE/covidinfos.json:
     get:
@@ -404,8 +404,8 @@ components:
         properties:
           key:
             type: string
-            example: 091620000000
-          level:
+            example: "091620000000"
+          level: 
             type: object
             properties:
               headline:
@@ -416,11 +416,11 @@ components:
                 example: "Sieben-Tage-Inzidenz Kreis: 204 Sieben-Tage-Inzidenz Bundesland: 109"
               backgroundColor:
                 type: string
-                example: #FFF280
-              textColor:
+                example: "#FFF280"
+              textColor: 
                 type: string
-                example: #000000
-          generalInfo:
+                example: "#000000"
+          generalInfo: 
             type: string
             example: "<p><span>Grundsätzlich gilt: </span></p><p><span>Abstand + Hygiene + Maske im Alltag + Corona-Warn-App + Lüften</span></p><p><span data-stringify-type=paragraph-break/><span>Keine Testpflicht + keine Ausgangsbeschränkungen + keine Kontaktbeschränkungen für Geimpfte und Genesene</span></p>"
           rules:
