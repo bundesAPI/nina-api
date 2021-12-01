@@ -89,7 +89,8 @@ paths:
 
   /appdata/covid/covidmap/DE/covidmap.json:
     get:
-      summary: Kartendaten für Corona-Fallzahlen. Die zugehörigen Geometrie-Daten sind über https://warnung.bund.de/assets/json/converted_corona_kreise.json abrufbar.
+      summary: Kartendaten für Corona-Fallzahlen.
+      description: Die zugehörigen Geometrie-Daten sind über [https://warnung.bund.de/assets/json/converted_corona_kreise.json](https://warnung.bund.de/assets/json/converted_corona_kreise.json) abrufbar.
       responses:
         '200':
           description: OK
@@ -111,7 +112,8 @@ paths:
 
   /appdata/gsb/logos/{filename}:
     get:
-      summary: Logo-Bilddateien. Die verfügbaren Bilddateien und zugehörige Sender-IDs + Namen sind über /appdata/gsb/logos/logos.json abrufbar.
+      summary: Logo-Bilddateien.
+      description: Die verfügbaren Bilddateien und zugehörige Sender-IDs + Namen sind über /appdata/gsb/logos/logos.json abrufbar.
       responses:
         '200':
           description: OK
@@ -146,7 +148,8 @@ paths:
 
   /appdata/gsb/eventCodes/{filename}:
     get:
-      summary: Event Code Bilddateien. Die verfügbaren Bilddateien und zugehörige Event Codes sind über /appdata/gsb/eventCodes/eventCodes.json abrufbar.
+      summary: Event Code Bilddateien.
+      description: Die verfügbaren Bilddateien und zugehörige Event Codes sind über /appdata/gsb/eventCodes/eventCodes.json abrufbar.
       responses:
         '200':
           description: OK
@@ -218,7 +221,8 @@ paths:
 
   /warnings/{identifier}.geojson:
     get:
-      summary: GeoJSON informationen zu einer Warnung. Datenformat entspricht https://datatracker.ietf.org/doc/html/rfc7946#section-3
+      summary: GeoJSON informationen zu einer Warnung.
+      description: Datenformat entspricht [https://datatracker.ietf.org/doc/html/rfc7946#section-3](https://datatracker.ietf.org/doc/html/rfc7946#section-3)
       responses:
         '200':
           description: OK
