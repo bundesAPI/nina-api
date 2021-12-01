@@ -282,7 +282,7 @@ paths:
 
   /lhp/mapData.json:
     get:
-      summary: ''
+      summary: 'Länderübergreifendes Hochwasserportal'
       responses:
         '200':
             description: OK
