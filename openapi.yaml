@@ -180,7 +180,7 @@ paths:
 
   /appdata/gsb/faqs/DE/faq.json:
     get:
-      summary: Notfalltipps
+      summary: FAQs
       responses:
         '200':
           description: OK
@@ -286,7 +286,7 @@ paths:
 
   /lhp/mapData.json:
     get:
-      summary: 'Länderübergreifendes Hochwasserportal'
+      summary: 'Meldungen des Länderübergreifenden Hochwasserportals'
       responses:
         '200':
             description: OK
