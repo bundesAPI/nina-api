@@ -22,7 +22,7 @@ jobs:
           openapi-file: ${{ github.workspace }}/openapi.yaml
           commit-to-git: true
           upload-to-pypi: true
-          upload-to-testpypi: true
+          upload-to-testpypi: false
           pypi-token: ${{ secrets.PYPI_API_TOKEN }}
           testpypi-token: ${{ secrets.TEST_PYPI_API_TOKEN }}
           python-version: ${{ matrix.python-version }}
