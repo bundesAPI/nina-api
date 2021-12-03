@@ -3,7 +3,7 @@ additionalProperties:
   packageName: "nina"
   infoName: "BundesAPI"
   infoEmail: "kontakt@bund.dev"
-  packageVersion: 1.0.1
+  packageVersion: 1.0.2
   packageUrl: "https://github.com/bundesAPI/nina-api"
   namespace: "deutschland"
   docLanguage: "de"
