@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "de-nina"
-version = "1.0.1"
+version = "1.0.2"
 description = "Bundesamt für Bevölkerungsschutz: NINA API"
 keywords = ["OpenAPI", "OpenAPI-Generator", "nina", "App", "API"]
 homepage = "https://github.com/bundesAPI/nina-api"
@@ -9,6 +9,8 @@ authors = ["BundesAPI <kontakt@bund.dev>"]
 packages = [
   { include = "deutschland"}
 ]
+license = "Apache-2.0"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.6"
