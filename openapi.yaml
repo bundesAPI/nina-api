@@ -10,6 +10,8 @@ servers:
   - url: "https://warnung.bund.de/api31"
 
 tags:
+  - name: Warnings
+  - name: Covid
   - name: default
 
 paths:
@@ -19,14 +21,14 @@ paths:
       summary: Meldungsübersicht nach AGS
       description: "Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region."
       tags:
-        - default
+        - Covid
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/AGSOverviewResult'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AGSOverviewResult"
       parameters:
         - in: path
           required: true
@@ -42,14 +44,14 @@ paths:
       summary: Corona Regelungen nach AGS
       description: "Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region."
       tags:
-        - default
+        - Covid
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/AGSCovidRules'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AGSCovidRules"
       parameters:
         - in: path
           required: true
@@ -65,14 +67,14 @@ paths:
       summary: Allgemeine Informationen zu Corona
       description: "Erhalten Sie allgemeine Informationen zu Corona."
       tags:
-        - default
+        - Covid
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CovidInfos'
+                $ref: "#/components/schemas/CovidInfos"
 
   /appdata/covid/covidticker/DE/covidticker.json:
     get:
@@ -80,14 +82,14 @@ paths:
       summary: Covid-Ticker
       description: "Erhalten Sie die aktuellen Covid-Ticker Meldungen."
       tags:
-        - default
+        - Covid
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CovidTicker'
+                $ref: "#/components/schemas/CovidTicker"
 
   /appdata/covid/covidticker/DE/tickermeldungen/{id}.json:
     get:
@@ -95,14 +97,14 @@ paths:
       summary: Detailinformationen zu Covid-Ticker Meldungen
       description: "Erhalten Sie Detailinformationen zu Covid-Ticker Meldungen."
       tags:
-        - default
+        - Covid
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CovidTickerMessage'
+                $ref: "#/components/schemas/CovidTickerMessage"
       parameters:
         - in: path
           required: true
@@ -118,14 +120,14 @@ paths:
       summary: Kartendaten für Corona-Fallzahlen.
       description: Die zugehörigen Geometrie-Daten sind über [https://warnung.bund.de/assets/json/converted_corona_kreise.json](https://warnung.bund.de/assets/json/converted_corona_kreise.json) abrufbar.
       tags:
-        - default
+        - Covid
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CovidMap'
+                $ref: "#/components/schemas/CovidMap"
 
   /appdata/gsb/logos/logos.json:
     get:
@@ -135,12 +137,12 @@ paths:
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogoCollection'
+                $ref: "#/components/schemas/LogoCollection"
 
   /appdata/gsb/logos/{filename}:
     get:
@@ -150,7 +152,7 @@ paths:
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             image/png:
@@ -173,17 +175,17 @@ paths:
   /appdata/gsb/eventCodes/eventCodes.json:
     get:
       operationId: getEventCodes
-      summary: Liefert Namen und Logos für Sender-IDs
-      description: TODO
+      summary: Liefert Event Codes und Name der Bilddateien.
+      description: Liefert Event Codes und Name der Bilddateien für verschiedene Event Codes.
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventCodeCollection'
+                $ref: "#/components/schemas/EventCodeCollection"
 
   /appdata/gsb/eventCodes/{filename}:
     get:
@@ -193,7 +195,7 @@ paths:
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             image/png:
@@ -213,31 +215,31 @@ paths:
     get:
       operationId: getNotfalltipps
       summary: Notfalltipps
-      description: Notfalltipps
+      description: Liefert eine List von Notfalltipps für verschiedene Gefahrenlagen.
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Notfalltipps'
+                $ref: "#/components/schemas/Notfalltipps"
 
   /appdata/gsb/faqs/DE/faq.json:
     get:
       operationId: getFAQs
       summary: FAQs
-      description: FAQs
+      description: FAQs rund um die Warn-App NINA.
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FAQCollection'
+                $ref: "#/components/schemas/FAQCollection"
 
   /dynamic/version/dataVersion.json:
     get:
@@ -247,13 +249,12 @@ paths:
       tags:
         - default
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VersionCollection'
-
+                $ref: "#/components/schemas/VersionCollection"
 
   /warnings/{identifier}.json:
     get:
@@ -261,14 +262,14 @@ paths:
       summary: Detailinformation zu einer Warnung
       description: Detailinformation zu einer Warnung
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Warning'
+                $ref: "#/components/schemas/Warning"
       parameters:
         - in: path
           required: true
@@ -284,14 +285,14 @@ paths:
       summary: GeoJSON informationen zu einer Warnung.
       description: Datenformat entspricht [https://datatracker.ietf.org/doc/html/rfc7946#section-3](https://datatracker.ietf.org/doc/html/rfc7946#section-3)
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GeoJSONObject'
+                $ref: "#/components/schemas/GeoJSONObject"
       parameters:
         - in: path
           required: true
@@ -307,15 +308,14 @@ paths:
       summary: Katwarn Meldungen
       description: Liefert die Katwarn-Meldungen für die Kartenansicht.
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/MapWarnings'
-
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapWarnings"
 
   /biwapp/mapData.json:
     get:
@@ -323,14 +323,14 @@ paths:
       summary: Biwapp Meldungen
       description: Liefert die Biwapp-Meldungen für die Kartenansicht.
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/MapWarnings'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapWarnings"
 
   /mowas/mapData.json:
     get:
@@ -338,14 +338,14 @@ paths:
       summary: Mowas Meldungen
       description: Liefert die Mowas-Meldungen für die Kartenansicht.
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/MapWarnings'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapWarnings"
 
   /dwd/mapData.json:
     get:
@@ -353,29 +353,29 @@ paths:
       summary: Unwetterwarnungen des Deutschen Wetterdienstes
       description: Liefert die Unwetterwarnungen des Deutschen Wetterdienstes für die Kartenansicht.
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/MapWarnings'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapWarnings"
 
   /lhp/mapData.json:
     get:
       operationId: getLhpMapData
-      summary: 'Meldungen des Länderübergreifenden Hochwasserportals'
+      summary: "Meldungen des Länderübergreifenden Hochwasserportals"
       description: Liefert die Meldungen des Länderübergreifenden Hochwasserportals für die Kartenansicht.
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/MapWarnings'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapWarnings"
 
   /police/mapData.json:
     get:
@@ -383,884 +383,883 @@ paths:
       summary: Polizeimeldungen
       description: Liefert die Polizeimeldungen für die Kartenansicht.
       tags:
-        - default
+        - Warnings
       responses:
-        '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/MapWarnings'
-
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MapWarnings"
 
 components:
-    schemas:
-      MapWarnings:
-        type: array
-        items:
-          type: object
-          properties:
-            id:
-              type: string
-              example: kat.60e96f0b62aefd198d9c0956_public_topics
-            version:
-              type: integer
-              format: int32
-              example: 9
-            startDate:
-              type: string
-              format: date-time
-              example: 2021-07-10T11:57:33+02:00
-            severity:
-              type: string
-              example: Severe
-            type:
-              type: string
-              example: Alert
-            i18nTitle:
-              type: object
-              properties:
-                de:
-                  type: string
-                  example: "Burgenlandkreis meldet: Warnung Sonderfall. Gültig ab 10.07.2021 11:58."
-      AGSOverviewResult:
-        type: array
-        items:
-          type: object
-          properties:
-            id:
-              type: string
-              example: mow.DE-NW-BN-SE030-20201014-30-000
-            payload:
-              type: object
-              properties:
-                version:
-                  type: integer
-                  format: int32
-                  example: 2
-                type:
-                  type: string
-                  example: ALERT
-                id:
-                  type: string
-                  example: mow.DE-NW-BN-SE030-20201014-30-000
-                hash:
-                  type: string
-                  example: d72526da941f98cb79f25dc3f9b56474a313e2161fda46e91f146139811eca4a
-                data:
-                  type: object
-                  properties:
-                    headline:
-                      type: string
-                      example: Coronavirus; Informationen des Bundesministeriums für  Gesundheit
-                    provider:
-                      type: string
-                      example: MOWAS
-                    severity:
-                      type: string
-                      example: Minor
-                    msgType:
-                      type: string
-                      example: Update
-                    transKeys:
-                      type: object
-                      properties:
-                        event:
-                          description: Event Code, zugehörige Logos können über /appdata/gsb/eventCodes/eventCodes.json abgerufen werden.
-                          type: string
-                          example: BBK-EVC-040
-                    area:
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                          example: ZGEM
-                        data:
-                          type: string
-                          example: 1+11057100001
-            i18nTitle:
-              type: object
-              properties:
-                de:
-                  type: string
-                  example: Coronavirus; Informationen des Bundesministeriums für Gesundheit
-            sent:
-              type: string
-              format: date-time
-              example: 2020-10-14T16:35:21+02:00
-
-      AGSCovidRules:
+  schemas:
+    MapWarnings:
+      type: array
+      items:
         type: object
         properties:
-          key:
+          id:
             type: string
-            example: "091620000000"
-          level:
+            example: kat.60e96f0b62aefd198d9c0956_public_topics
+          version:
+            type: integer
+            format: int32
+            example: 9
+          startDate:
+            type: string
+            format: date-time
+            example: 2021-07-10T11:57:33+02:00
+          severity:
+            type: string
+            example: Severe
+          type:
+            type: string
+            example: Alert
+          i18nTitle:
             type: object
             properties:
-              headline:
+              de:
                 type: string
-                example: Infektionsgefahr Stufe 2
-              range:
-                type: string
-                example: "Sieben-Tage-Inzidenz Kreis: 204 Sieben-Tage-Inzidenz Bundesland: 109"
-              backgroundColor:
-                type: string
-                example: "#FFF280"
-              textColor:
-                type: string
-                example: "#000000"
-          generalInfo:
+                example: "Burgenlandkreis meldet: Warnung Sonderfall. Gültig ab 10.07.2021 11:58."
+    AGSOverviewResult:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
             type: string
-            example: "<p><span>Grundsätzlich gilt: </span></p><p><span>Abstand + Hygiene + Maske im Alltag + Corona-Warn-App + Lüften</span></p><p><span data-stringify-type=paragraph-break/><span>Keine Testpflicht + keine Ausgangsbeschränkungen + keine Kontaktbeschränkungen für Geimpfte und Genesene</span></p>"
-          rules:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  example: vaccinations
-                caption:
-                  type: string
-                  example: Impfen
-                text:
-                  type: string
-                  example: <p><span>Keine Priorisierung bei der Corona-Schutzimpfung in Arztpraxen und Impfzentren. Nähere Informationen zur Schutzimpfung gegen das Corona-Virus erhalten Sie über die bundesweite Hotline 116117.</span></p><p><span><a class=RichTextExtLink ExternalLink data-gsb-doc-origin=36a6263b-25b9-40c2-8b51-8cfc1eb76506 href=https://www.stmgp.bayern.de/coronavirus/impfung/>Hier finden Sie Informationen aus Ihrem Bundesland.</a></span></p>
-                source:
-                  type: string
-                  example: LAND
-                icon:
-                  type: object
-                  properties:
-                    src:
-                      type: string
-                      example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/91760ea61c38f87127b6052c266820f9da9b7f5ed7cf473df55cd2a888b6f2e1.png
-                    hash:
-                      type: string
-                      example: 91760ea61c38f87127b6052c266820f9da9b7f5ed7cf473df55cd2a888b6f2e1
-          regulations:
+            example: mow.DE-NW-BN-SE030-20201014-30-000
+          payload:
             type: object
             properties:
-              validFromUntil:
+              version:
+                type: integer
+                format: int32
+                example: 2
+              type:
                 type: string
-                example: Gültig von $validFrom bis $validUntil
-              sections:
+                example: ALERT
+              id:
+                type: string
+                example: mow.DE-NW-BN-SE030-20201014-30-000
+              hash:
+                type: string
+                example: d72526da941f98cb79f25dc3f9b56474a313e2161fda46e91f146139811eca4a
+              data:
                 type: object
                 properties:
-                  BUND:
+                  headline:
+                    type: string
+                    example: Coronavirus; Informationen des Bundesministeriums für  Gesundheit
+                  provider:
+                    type: string
+                    example: MOWAS
+                  severity:
+                    type: string
+                    example: Minor
+                  msgType:
+                    type: string
+                    example: Update
+                  transKeys:
                     type: object
                     properties:
-                      caption:
+                      event:
+                        description: Event Code, zugehörige Logos können über /appdata/gsb/eventCodes/eventCodes.json abgerufen werden.
                         type: string
-                        example: Bundesverordnung
-                      url:
-                        type: string
-                        example: https://www.bundesregierung.de/breg-de/themen/coronavirus/
-                      icon:
-                        type: object
-                        properties:
-                          src:
-                            type: string
-                            example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/416f1bd25b6d291150087053a5713885fc695e39f1b7a9cffcb4eefc1fb92fca.png
-                          hash:
-                            type: string
-                            example: 416f1bd25b6d291150087053a5713885fc695e39f1b7a9cffcb4eefc1fb92fca
-                  LAND:
+                        example: BBK-EVC-040
+                  area:
                     type: object
                     properties:
-                      caption:
+                      type:
                         type: string
-                        example: Landesverordnung
-                      url:
+                        example: ZGEM
+                      data:
                         type: string
-                        example: https://www.stmgp.bayern.de/coronavirus/rechtsgrundlagen
-                      validFrom:
-                        type: string
-                        format: date-time
-                        example: 2021-07-01T00:00:00+02:00
-                      validUntil:
-                        type: string
-                        format: date-time
-                        example: 2021-07-28T23:59:59+02:00
-                      icon:
-                        type: object
-                        properties:
-                          src:
-                            type: string
-                            example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/1f65c785497bbdfddcb9de3a39c4b2ed1aee58d41afd4a3f9a62cfb9f2942748.png
-                          hash:
-                            type: string
-                            example: 1f65c785497bbdfddcb9de3a39c4b2ed1aee58d41afd4a3f9a62cfb9f2942748
-                  KREIS:
-                    type: object
-                    properties:
-                      caption:
-                        type: string
-                        example: Kreisverordnung
-                      url:
-                        type: string
-                        example: https://www.muenchen.de/rathaus/Stadtverwaltung/Referat-fuer-Gesundheit-und-Umwelt/Infektionsschutz/Neuartiges_Coronavirus.html#AB
-                      validFrom:
-                        type: string
-                        format: date-time
-                        example: 2021-06-09T00:00:00+02:00
-                      icon:
-                        type: object
-                        properties:
-                          src:
-                            type: string
-                            example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/26503a33d452d1ce067b21e3d0800887eb7ca872665829b21cb07899225e469d.png
-                          hash:
-                            type: string
-                            example: 26503a33d452d1ce067b21e3d0800887eb7ca872665829b21cb07899225e469d
-          common:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  example: contact
-                caption:
-                  type: string
-                  example: Ansprechpartner
-                text:
-                  type: string
-                  example: <p>Quellen sind jeweils die Landesregierungen bzw. die örtlichen Behörden auf Kreisebene oder in den Stadtkreisen. Sollten Sie zu den Verordnungen oder Verfügungen Fragen haben informieren Sie sich bitte auf den Webseiten Ihrer jeweiligen Kreis- oder Stadtverwaltung oder wenden Sie sich bitte an die entsprechenden Bürgerkontakte.</p>
-
-      CovidInfos:
-        type: object
-        description: Allgemeine Informationen zu Corona
-        required:
-          - lastModificationDate
-          - categories
-        properties:
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-          categories:
-            type: array
-            items:
-              $ref: '#/components/schemas/CovidInfosCategory'
-
-      CovidInfosCategory:
-        type: object
-        required:
-          - title
-          - tips
-          - image
-          - lastModificationDate
-        properties:
-          title:
-            type: string
-            example: Corona-Grundwissen
-          tips:
-            type: array
-            items:
-              $ref: '#/components/schemas/CovidInfosTip'
-          image:
-              $ref: '#/components/schemas/CovidInfosImage'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-
-      CovidInfosTip:
-        type: object
-        required:
-          - image
-          - title
-          - article
-        properties:
-          image:
-              $ref: '#/components/schemas/CovidInfosImage'
-          title:
-            type: string
-            example: Corona-Grundwissen
-          article:
-              $ref: '#/components/schemas/CovidInfosArticle'
-
-      CovidInfosImage:
-        type: object
-        required:
-          - id
-          - src
-          - title
-          - alt
-          - sourceText
-          - lastModificationDate
-          - hash
-        properties:
-          id:
-            type: string
-            example: 7b995a3b-cec7-4354-833b-3be57710076e
-          src:
-            type: string
-            example: https://warnung.bund.de/api31/appdata/covid/covidinfos/DE/images/7b995a3b-cec7-4354-833b-3be57710076e.png
-          title:
-            type: string
-            example: Aktuelle Fallzahlen
-          alt:
-            type: string
-            example: Aktuelle Fallzahlen
-          sourceText:
-            type: string
-            example: Materna
-          lastModificationDate:
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-          hash:
-            type: string
-            example: 2b83ba3d16288caf879640b67774560629b85af74804cec7eb5120faa7eb060a
-
-      CovidInfosArticle:
-        type: object
-        required:
-          - title
-          - bodyText
-          - dateOfIssue
-          - lastModificationDate
-        properties:
-          title:
-            type: string
-            example: 'COVID-19: Die aktuellen Fallzahlen für Deutschland'
-          bodyText:
-            type: string
-            example: '<html><head></head><body><p>Das <strong>Robert-Koch-Institut (RKI)</strong> bereitet ...</p></body></html>'
-          function:
-            type: string
-            example: KARTE
-          dateOfIssue:
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-          lastModificationDate:
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-
-      CovidTicker:
-        type: array
-        items:
-          $ref: '#/components/schemas/CovidTickerEntry'
-
-      CovidTickerEntry:
-        type: object
-        required:
-          - id
-          - lastModificationDate
-        properties:
-          id:
-            description: Tickermeldungs-ID, details können über /appdata/covid/covidticker/DE/tickermeldungen/{id}.json abgerufen werden.
-            type: string
-            format: uuid
-            example: 06ad3d65-d9f8-4ace-bb5a-cf2ac599a097
-          lastModificationDate:
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-
-      CovidTickerMessage:
-        type: object
-        required:
-          - id
-          - dateOfIssue
-          - title
-          - bodyText
-          - teaserText
-          - push
-          - lastModificationDate
-          - version
-        properties:
-          id:
-            type: string
-            example: 7eb928fc-4496-4a71-8154-1c64be10ce0a
-          dateOfIssue:
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-          title:
-            type: string
-            example: 'Bund-Länder-Beschluss vom 5. Januar: Neue Corona-Maßnahmen gelten ab heute bundesweit'
-          bodyText:
-            type: string
-            example: '<html><head></head><body><p>Private Zusammenkünfte mit maximal...</p></body></html>'
-          teaserText:
-            type: string
-            example: '<p>Private Zusammenkünfte mit maximal...</p>'
-          push:
-            type: boolean
-            example: false
-          lastModificationDate:
-            type: string
-            format: date-time
-            example: 2021-06-09T10:36:53+02:00
-          version:
-            type: integer
-            example: 2
-
-      CovidMap:
-        type: object
-        description: Kartendaten für Corona Fallzahlen
-        required:
-          - mapLegend
-          - mapData
-        properties:
-          mapLegend:
-            type: array
-            items:
-              $ref: '#/components/schemas/CovidMapLegend'
-          mapData:
-            type: array
-            items:
-              $ref: '#/components/schemas/CovidMapData'
-
-      CovidMapLegend:
-        type: object
-        required:
-          - label
-          - properties
-        properties:
-          label:
-            type: string
-            example: "keine Fälle übermittelt"
-          properties:
-            $ref: '#/components/schemas/CovidMapStyle'
-
-      CovidMapData:
-        type: object
-        required:
-          - rs
-          - cases
-          - cases_per_100k
-          - cases7per100k
-          - deaths
-          - ewz
-          - lastUpdate
-          - properties
-        properties:
-          rs:
-            type: string
-            example: '01001'
-          cases:
-            description: 'Fälle'
-            type: integer
-            example: 4711
-          cases_per_100k:
-            description: 'Fälle/100.000 EW'
-            type: number
-            format: float
-            example: 4711.123
-          cases7per100k:
-            description: 'Fälle der letzten 7 Tage/100.000 EW'
-            type: number
-            format: float
-            example: 47.11123
-          deaths:
-            description: 'Todesfälle'
-            type: integer
-            example: 0
-          ewz:
-            description: 'Einwohnerzahl'
-            type: integer
-            example: 471100
-          lastUpdate:
-            type: string
-            example: '26.09.2021, 00:00 Uhr'
-          properties:
-            $ref: '#/components/schemas/CovidMapStyle'
-
-      CovidMapStyle:
-        type: object
-        required:
-          - strokeOpacity
-          - strokeWeight
-          - strokeColor
-          - fillOpacity
-          - fillColor
-        properties:
-          strokeOpacity:
-            type: number
-            format: float
-            example: 1
-          strokeWeight:
-            type: integer
-            example: 1
-          strokeColor:
-            type: string
-            example: '#474747'
-          fillOpacity:
-            type: number
-            format: float
-            example: 0.5
-          fillColor:
-            type: string
-            nullable: false
-            example: '#04BB0A'
-
-      Notfalltipps:
-        type: object
-        required:
-          - notfalltipps
-        properties:
-          notfalltipps:
-            $ref: '#/components/schemas/NotfalltippsCollection'
-
-      NotfalltippsCollection:
-        type: object
-        required:
-          - category
-          - lastModificationDate
-        properties:
-          category:
-            type: array
-            items:
-              $ref: '#/components/schemas/NotfalltippsCategory'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      NotfalltippsCategory:
-        type: object
-        required:
-          - title
-          - tips
-          - lastModificationDate
-        properties:
-          title:
-            type: string
-            example: Corona-Grundwissen
-          tips:
-            type: array
-            items:
-              $ref: '#/components/schemas/NotfalltippsTip'
-          eventCodes:
-            description: Event Codes, zugehörige Logos können über /appdata/gsb/eventCodes/eventCodes.json abgerufen werden.
-            type: array
-            items:
-              type: string
-              example: BBK-EVC-021
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      NotfalltippsTip:
-        type: object
-        required:
-          - title
-          - article
-        properties:
-          title:
-            type: string
-            example: Corona-Grundwissen
-          articles:
-            type: array
-            items:
-              $ref: '#/components/schemas/NotfalltippsArticle'
-
-      NotfalltippsImage:
-        type: object
-        required:
-          - src
-          - title
-          - alt
-          - lastModificationDate
-          - hash
-        properties:
-          src:
-            type: string
-            example: https://warnung.bund.de/api31/appdata/gsb/notfalltipps/DE/images/0_1_0_src.jpg
-          title:
-            type: string
-            example: Richtig handeln im Notfall
-          alt:
-            type: string
-            example: Icon Richtig handeln im Notfall
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-          hash:
-            type: string
-            example: 2b83ba3d16288caf879640b67774560629b85af74804cec7eb5120faa7eb060a
-
-      NotfalltippsArticle:
-        type: object
-        required:
-          - title
-          - bodyText
-          - lastModificationDate
-        properties:
-          title:
-            type: string
-            example: 'Allgemeine Hinweise'
-          bodyText:
-            type: string
-            example: '<p>In Notfällen und größ…tastrophenhilfe</a>.</p>'
-          image:
-              $ref: '#/components/schemas/NotfalltippsImage'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      FAQCollection:
-        type: object
-        required:
-          - FAQ
-        properties:
-          FAQ:
-            type: array
-            items:
-              $ref: '#/components/schemas/FAQ'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      FAQ:
-        type: object
-        required:
-          - question
-          - answer
-          - lastModificationDate
-        properties:
-          question:
-            type: string
-            example: '<p>Wofür steht die Warn-App <abbr title=\"Notfall-Informations- und Nachrichten-App\">NINA</abbr>?</p>'
-          answer:
-            type: string
-            example: '<p><abbr title=\"Notfall-Informations- und Nachrichten-App\">NINA</abbr> steht für Notfall-Informations- und Nachrichten-App.</p>'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      GeoJSONObject:
-        type: object
-        description: GeoJSon geometry
-        externalDocs:
-          url: https://datatracker.ietf.org/doc/html/rfc7946#section-3
-
-      LogoCollection:
-        type: object
-        required:
-          - lastModificationDate
-          - logos
-        properties:
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-          logos:
-            type: array
-            items:
-              $ref: '#/components/schemas/Logo'
-
-      Logo:
-        type: object
-        required:
-          - senderId
-          - name
-          - orientation
-          - lastModificationDate
-        properties:
-          senderId:
-            type: string
-            example: 'opendata@dwd.de'
-          name:
-            type: string
-            example: Deutscher Wetterdienst
-          image:
-            description: 'Dateiname, relativ zu https://warnung.bund.de/api31/appdata/gsb/logos/ (z.B.: https://warnung.bund.de/api31/appdata/gsb/logos/dwd_logo.png). Bei machen Logos nicht definiert.'
-            type: string
-            example: dwd_logo.png
-          orientation:
-            description: 'Orientierung des Logos, 0 oder 1'
-            type: string
-            example: '1'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      EventCodeCollection:
-        type: object
-        required:
-          - eventCodes
-          - lastModificationDate
-        properties:
-          eventCodes:
-            type: array
-            items:
-              $ref: '#/components/schemas/EventCode'
-          lastModificationDate:
-            description: Unix-Zeitstempel der letzten Änderung
-            type: integer
-            format: int64
-            example: 1620819849000
-
-      EventCode:
-        type: object
-        required:
-          - eventCode
-          - imageUrl
-        properties:
-          eventCode:
-            type: string
-            example: 'BBK-EVC-001'
-          image:
-            description: 'Dateiname, relativ zu https://warnung.bund.de/api31/appdata/gsb/eventCodes/ (z.B.: https://warnung.bund.de/api31/appdata/gsb/eventCodes/BBK-EVC-001.png).'
-            type: string
-            example: dwd_logo.png
-
-      VersionCollection:
-        type: object
-        required:
-          - version
-          - hash
-          - entries
-        properties:
-          version:
-            type: integer
-            example: 9
-          hash:
-            type: string
-            example: 3069be6324644ceb161afb3d53f7817de52a89fe38b6f5ae815ad0a8970dec7c
-          entries:
-            type: array
-            items:
-              $ref: '#/components/schemas/Version'
-
-      Version:
-        type: object
-        required:
-          - name
-          - version
-          - hash
-        properties:
-          name:
-            type: string
-            example: labels
-          version:
-            type: integer
-            example: 9
-          hash:
-            type: string
-            example: a3025b34909d20d8650c82d9ff5735c140b7781aed3de9ee0cf250014f737ae6
-
-      Warning:
-        type: object
-        properties:
-          identifier:
-            type: string
-            example: kat.1234567890abcdef12345678_public_topics
-          sender:
-            description: Sender-ID, passende logos können über /appdata/gsb/logos/logos.json abgerufen werden
-            type: string
-            example: CAP@katwarn.de
+                        example: 1+11057100001
+          i18nTitle:
+            type: object
+            properties:
+              de:
+                type: string
+                example: Coronavirus; Informationen des Bundesministeriums für Gesundheit
           sent:
             type: string
             format: date-time
-            example: 2021-09-24T13:37:35+02:00
-          status:
-            type: string
-            example: Actual
-          msgType:
-            type: string
-            example: Alert
-          scope:
-            type: string
-            example: Public
-          code:
-            type: array
-            items:
-              type: string
-            example:
-              - DVN:9
-          incidents:
-            type: string
-            example: 1234567890abcdef12345678
-          info:
-            type: array
-            items:
-              type: object
-              properties:
-                category:
-                  type: array
-                  items:
-                    type: string
-                  example:
-                    - Other
-                event:
-                  type: string
-                  example: Sonderfall
-                urgency:
-                  type: string
-                  example: Unknown
-                severity:
-                  type: string
-                  example: Severe
-                certainty:
-                  type: string
-                  example: Unknown
-                eventCode:
-                  description: 'Bekannte keys: profile:DE-BBK-EVENTCODE (value: Event Code ID)'
-                  $ref: '#/components/schemas/KeyValueArray'
-                effective:
-                  type: string
-                  format: date-time
-                  example: 2021-09-24T13:38:00+02:00
-                senderName:
-                  type: string
-                  example: Feuerwehrleitstelle Musterstadt
-                headline:
-                  type: string
-                  example: "Feuerwehrleitstelle Musterstadt meldet: Warnung Sonderfall.  Gültig ab 01.09.2021, 11:11."
-                description:
-                  type: string
-                  example: "Es ist etwas passiert<br/>Belastung durch Beispiele Nachgewiesen<br/>Weitere informationen über..."
-                web:
-                  type: string
-                  example: "https://bund.dev"
-                parameter:
-                  description: 'Bekannte keys: instructionText, warnVerwaltungsbereiche, instructionCode, sender_langname, sender_signature, ZGEM'
-                  $ref: '#/components/schemas/KeyValueArray'
-                area:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      areaDesc:
-                        type: string
-                        example: Musterstadt
-                      geocode:
-                        description: 'Bekannte keys: AreaId'
-                        $ref: '#/components/schemas/KeyValueArray'
+            example: 2020-10-14T16:35:21+02:00
 
-      KeyValueArray:
-        type: array
-        items:
+    AGSCovidRules:
+      type: object
+      properties:
+        key:
+          type: string
+          example: "091620000000"
+        level:
           type: object
           properties:
-            valueName:
+            headline:
               type: string
-              example: instructionCode
-            value:
+              example: Infektionsgefahr Stufe 2
+            range:
               type: string
-              example: BBK-ISC-132
+              example: "Sieben-Tage-Inzidenz Kreis: 204 Sieben-Tage-Inzidenz Bundesland: 109"
+            backgroundColor:
+              type: string
+              example: "#FFF280"
+            textColor:
+              type: string
+              example: "#000000"
+        generalInfo:
+          type: string
+          example: "<p><span>Grundsätzlich gilt: </span></p><p><span>Abstand + Hygiene + Maske im Alltag + Corona-Warn-App + Lüften</span></p><p><span data-stringify-type=paragraph-break/><span>Keine Testpflicht + keine Ausgangsbeschränkungen + keine Kontaktbeschränkungen für Geimpfte und Genesene</span></p>"
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: vaccinations
+              caption:
+                type: string
+                example: Impfen
+              text:
+                type: string
+                example: <p><span>Keine Priorisierung bei der Corona-Schutzimpfung in Arztpraxen und Impfzentren. Nähere Informationen zur Schutzimpfung gegen das Corona-Virus erhalten Sie über die bundesweite Hotline 116117.</span></p><p><span><a class=RichTextExtLink ExternalLink data-gsb-doc-origin=36a6263b-25b9-40c2-8b51-8cfc1eb76506 href=https://www.stmgp.bayern.de/coronavirus/impfung/>Hier finden Sie Informationen aus Ihrem Bundesland.</a></span></p>
+              source:
+                type: string
+                example: LAND
+              icon:
+                type: object
+                properties:
+                  src:
+                    type: string
+                    example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/91760ea61c38f87127b6052c266820f9da9b7f5ed7cf473df55cd2a888b6f2e1.png
+                  hash:
+                    type: string
+                    example: 91760ea61c38f87127b6052c266820f9da9b7f5ed7cf473df55cd2a888b6f2e1
+        regulations:
+          type: object
+          properties:
+            validFromUntil:
+              type: string
+              example: Gültig von $validFrom bis $validUntil
+            sections:
+              type: object
+              properties:
+                BUND:
+                  type: object
+                  properties:
+                    caption:
+                      type: string
+                      example: Bundesverordnung
+                    url:
+                      type: string
+                      example: https://www.bundesregierung.de/breg-de/themen/coronavirus/
+                    icon:
+                      type: object
+                      properties:
+                        src:
+                          type: string
+                          example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/416f1bd25b6d291150087053a5713885fc695e39f1b7a9cffcb4eefc1fb92fca.png
+                        hash:
+                          type: string
+                          example: 416f1bd25b6d291150087053a5713885fc695e39f1b7a9cffcb4eefc1fb92fca
+                LAND:
+                  type: object
+                  properties:
+                    caption:
+                      type: string
+                      example: Landesverordnung
+                    url:
+                      type: string
+                      example: https://www.stmgp.bayern.de/coronavirus/rechtsgrundlagen
+                    validFrom:
+                      type: string
+                      format: date-time
+                      example: 2021-07-01T00:00:00+02:00
+                    validUntil:
+                      type: string
+                      format: date-time
+                      example: 2021-07-28T23:59:59+02:00
+                    icon:
+                      type: object
+                      properties:
+                        src:
+                          type: string
+                          example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/1f65c785497bbdfddcb9de3a39c4b2ed1aee58d41afd4a3f9a62cfb9f2942748.png
+                        hash:
+                          type: string
+                          example: 1f65c785497bbdfddcb9de3a39c4b2ed1aee58d41afd4a3f9a62cfb9f2942748
+                KREIS:
+                  type: object
+                  properties:
+                    caption:
+                      type: string
+                      example: Kreisverordnung
+                    url:
+                      type: string
+                      example: https://www.muenchen.de/rathaus/Stadtverwaltung/Referat-fuer-Gesundheit-und-Umwelt/Infektionsschutz/Neuartiges_Coronavirus.html#AB
+                    validFrom:
+                      type: string
+                      format: date-time
+                      example: 2021-06-09T00:00:00+02:00
+                    icon:
+                      type: object
+                      properties:
+                        src:
+                          type: string
+                          example: https://warnung.bund.de/api31/appdata/covid/covidrules/assets/26503a33d452d1ce067b21e3d0800887eb7ca872665829b21cb07899225e469d.png
+                        hash:
+                          type: string
+                          example: 26503a33d452d1ce067b21e3d0800887eb7ca872665829b21cb07899225e469d
+        common:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: contact
+              caption:
+                type: string
+                example: Ansprechpartner
+              text:
+                type: string
+                example: <p>Quellen sind jeweils die Landesregierungen bzw. die örtlichen Behörden auf Kreisebene oder in den Stadtkreisen. Sollten Sie zu den Verordnungen oder Verfügungen Fragen haben informieren Sie sich bitte auf den Webseiten Ihrer jeweiligen Kreis- oder Stadtverwaltung oder wenden Sie sich bitte an die entsprechenden Bürgerkontakte.</p>
+
+    CovidInfos:
+      type: object
+      description: Allgemeine Informationen zu Corona
+      required:
+        - lastModificationDate
+        - categories
+      properties:
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+        categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/CovidInfosCategory"
+
+    CovidInfosCategory:
+      type: object
+      required:
+        - title
+        - tips
+        - image
+        - lastModificationDate
+      properties:
+        title:
+          type: string
+          example: Corona-Grundwissen
+        tips:
+          type: array
+          items:
+            $ref: "#/components/schemas/CovidInfosTip"
+        image:
+          $ref: "#/components/schemas/CovidInfosImage"
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+
+    CovidInfosTip:
+      type: object
+      required:
+        - image
+        - title
+        - article
+      properties:
+        image:
+          $ref: "#/components/schemas/CovidInfosImage"
+        title:
+          type: string
+          example: Corona-Grundwissen
+        article:
+          $ref: "#/components/schemas/CovidInfosArticle"
+
+    CovidInfosImage:
+      type: object
+      required:
+        - id
+        - src
+        - title
+        - alt
+        - sourceText
+        - lastModificationDate
+        - hash
+      properties:
+        id:
+          type: string
+          example: 7b995a3b-cec7-4354-833b-3be57710076e
+        src:
+          type: string
+          example: https://warnung.bund.de/api31/appdata/covid/covidinfos/DE/images/7b995a3b-cec7-4354-833b-3be57710076e.png
+        title:
+          type: string
+          example: Aktuelle Fallzahlen
+        alt:
+          type: string
+          example: Aktuelle Fallzahlen
+        sourceText:
+          type: string
+          example: Materna
+        lastModificationDate:
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+        hash:
+          type: string
+          example: 2b83ba3d16288caf879640b67774560629b85af74804cec7eb5120faa7eb060a
+
+    CovidInfosArticle:
+      type: object
+      required:
+        - title
+        - bodyText
+        - dateOfIssue
+        - lastModificationDate
+      properties:
+        title:
+          type: string
+          example: "COVID-19: Die aktuellen Fallzahlen für Deutschland"
+        bodyText:
+          type: string
+          example: "<html><head></head><body><p>Das <strong>Robert-Koch-Institut (RKI)</strong> bereitet ...</p></body></html>"
+        function:
+          type: string
+          example: KARTE
+        dateOfIssue:
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+        lastModificationDate:
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+
+    CovidTicker:
+      type: array
+      items:
+        $ref: "#/components/schemas/CovidTickerEntry"
+
+    CovidTickerEntry:
+      type: object
+      required:
+        - id
+        - lastModificationDate
+      properties:
+        id:
+          description: Tickermeldungs-ID, details können über /appdata/covid/covidticker/DE/tickermeldungen/{id}.json abgerufen werden.
+          type: string
+          format: uuid
+          example: 06ad3d65-d9f8-4ace-bb5a-cf2ac599a097
+        lastModificationDate:
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+
+    CovidTickerMessage:
+      type: object
+      required:
+        - id
+        - dateOfIssue
+        - title
+        - bodyText
+        - teaserText
+        - push
+        - lastModificationDate
+        - version
+      properties:
+        id:
+          type: string
+          example: 7eb928fc-4496-4a71-8154-1c64be10ce0a
+        dateOfIssue:
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+        title:
+          type: string
+          example: "Bund-Länder-Beschluss vom 5. Januar: Neue Corona-Maßnahmen gelten ab heute bundesweit"
+        bodyText:
+          type: string
+          example: "<html><head></head><body><p>Private Zusammenkünfte mit maximal...</p></body></html>"
+        teaserText:
+          type: string
+          example: "<p>Private Zusammenkünfte mit maximal...</p>"
+        push:
+          type: boolean
+          example: false
+        lastModificationDate:
+          type: string
+          format: date-time
+          example: 2021-06-09T10:36:53+02:00
+        version:
+          type: integer
+          example: 2
+
+    CovidMap:
+      type: object
+      description: Kartendaten für Corona Fallzahlen
+      required:
+        - mapLegend
+        - mapData
+      properties:
+        mapLegend:
+          type: array
+          items:
+            $ref: "#/components/schemas/CovidMapLegend"
+        mapData:
+          type: array
+          items:
+            $ref: "#/components/schemas/CovidMapData"
+
+    CovidMapLegend:
+      type: object
+      required:
+        - label
+        - properties
+      properties:
+        label:
+          type: string
+          example: "keine Fälle übermittelt"
+        properties:
+          $ref: "#/components/schemas/CovidMapStyle"
+
+    CovidMapData:
+      type: object
+      required:
+        - rs
+        - cases
+        - cases_per_100k
+        - cases7per100k
+        - deaths
+        - ewz
+        - lastUpdate
+        - properties
+      properties:
+        rs:
+          type: string
+          example: "01001"
+        cases:
+          description: "Fälle"
+          type: integer
+          example: 4711
+        cases_per_100k:
+          description: "Fälle/100.000 EW"
+          type: number
+          format: float
+          example: 4711.123
+        cases7per100k:
+          description: "Fälle der letzten 7 Tage/100.000 EW"
+          type: number
+          format: float
+          example: 47.11123
+        deaths:
+          description: "Todesfälle"
+          type: integer
+          example: 0
+        ewz:
+          description: "Einwohnerzahl"
+          type: integer
+          example: 471100
+        lastUpdate:
+          type: string
+          example: "26.09.2021, 00:00 Uhr"
+        properties:
+          $ref: "#/components/schemas/CovidMapStyle"
+
+    CovidMapStyle:
+      type: object
+      required:
+        - strokeOpacity
+        - strokeWeight
+        - strokeColor
+        - fillOpacity
+        - fillColor
+      properties:
+        strokeOpacity:
+          type: number
+          format: float
+          example: 1
+        strokeWeight:
+          type: integer
+          example: 1
+        strokeColor:
+          type: string
+          example: "#474747"
+        fillOpacity:
+          type: number
+          format: float
+          example: 0.5
+        fillColor:
+          type: string
+          nullable: false
+          example: "#04BB0A"
+
+    Notfalltipps:
+      type: object
+      required:
+        - notfalltipps
+      properties:
+        notfalltipps:
+          $ref: "#/components/schemas/NotfalltippsCollection"
+
+    NotfalltippsCollection:
+      type: object
+      required:
+        - category
+        - lastModificationDate
+      properties:
+        category:
+          type: array
+          items:
+            $ref: "#/components/schemas/NotfalltippsCategory"
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    NotfalltippsCategory:
+      type: object
+      required:
+        - title
+        - tips
+        - lastModificationDate
+      properties:
+        title:
+          type: string
+          example: Corona-Grundwissen
+        tips:
+          type: array
+          items:
+            $ref: "#/components/schemas/NotfalltippsTip"
+        eventCodes:
+          description: Event Codes, zugehörige Logos können über /appdata/gsb/eventCodes/eventCodes.json abgerufen werden.
+          type: array
+          items:
+            type: string
+            example: BBK-EVC-021
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    NotfalltippsTip:
+      type: object
+      required:
+        - title
+        - article
+      properties:
+        title:
+          type: string
+          example: Corona-Grundwissen
+        articles:
+          type: array
+          items:
+            $ref: "#/components/schemas/NotfalltippsArticle"
+
+    NotfalltippsImage:
+      type: object
+      required:
+        - src
+        - title
+        - alt
+        - lastModificationDate
+        - hash
+      properties:
+        src:
+          type: string
+          example: https://warnung.bund.de/api31/appdata/gsb/notfalltipps/DE/images/0_1_0_src.jpg
+        title:
+          type: string
+          example: Richtig handeln im Notfall
+        alt:
+          type: string
+          example: Icon Richtig handeln im Notfall
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+        hash:
+          type: string
+          example: 2b83ba3d16288caf879640b67774560629b85af74804cec7eb5120faa7eb060a
+
+    NotfalltippsArticle:
+      type: object
+      required:
+        - title
+        - bodyText
+        - lastModificationDate
+      properties:
+        title:
+          type: string
+          example: "Allgemeine Hinweise"
+        bodyText:
+          type: string
+          example: "<p>In Notfällen und größ…tastrophenhilfe</a>.</p>"
+        image:
+          $ref: "#/components/schemas/NotfalltippsImage"
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    FAQCollection:
+      type: object
+      required:
+        - FAQ
+      properties:
+        FAQ:
+          type: array
+          items:
+            $ref: "#/components/schemas/FAQ"
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    FAQ:
+      type: object
+      required:
+        - question
+        - answer
+        - lastModificationDate
+      properties:
+        question:
+          type: string
+          example: '<p>Wofür steht die Warn-App <abbr title=\"Notfall-Informations- und Nachrichten-App\">NINA</abbr>?</p>'
+        answer:
+          type: string
+          example: '<p><abbr title=\"Notfall-Informations- und Nachrichten-App\">NINA</abbr> steht für Notfall-Informations- und Nachrichten-App.</p>'
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    GeoJSONObject:
+      type: object
+      description: GeoJSon geometry
+      externalDocs:
+        url: https://datatracker.ietf.org/doc/html/rfc7946#section-3
+
+    LogoCollection:
+      type: object
+      required:
+        - lastModificationDate
+        - logos
+      properties:
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+        logos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Logo"
+
+    Logo:
+      type: object
+      required:
+        - senderId
+        - name
+        - orientation
+        - lastModificationDate
+      properties:
+        senderId:
+          type: string
+          example: "opendata@dwd.de"
+        name:
+          type: string
+          example: Deutscher Wetterdienst
+        image:
+          description: "Dateiname, relativ zu https://warnung.bund.de/api31/appdata/gsb/logos/ (z.B.: https://warnung.bund.de/api31/appdata/gsb/logos/dwd_logo.png). Bei machen Logos nicht definiert."
+          type: string
+          example: dwd_logo.png
+        orientation:
+          description: "Orientierung des Logos, 0 oder 1"
+          type: string
+          example: "1"
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    EventCodeCollection:
+      type: object
+      required:
+        - eventCodes
+        - lastModificationDate
+      properties:
+        eventCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/EventCode"
+        lastModificationDate:
+          description: Unix-Zeitstempel der letzten Änderung
+          type: integer
+          format: int64
+          example: 1620819849000
+
+    EventCode:
+      type: object
+      required:
+        - eventCode
+        - imageUrl
+      properties:
+        eventCode:
+          type: string
+          example: "BBK-EVC-001"
+        image:
+          description: "Dateiname, relativ zu https://warnung.bund.de/api31/appdata/gsb/eventCodes/ (z.B.: https://warnung.bund.de/api31/appdata/gsb/eventCodes/BBK-EVC-001.png)."
+          type: string
+          example: dwd_logo.png
+
+    VersionCollection:
+      type: object
+      required:
+        - version
+        - hash
+        - entries
+      properties:
+        version:
+          type: integer
+          example: 9
+        hash:
+          type: string
+          example: 3069be6324644ceb161afb3d53f7817de52a89fe38b6f5ae815ad0a8970dec7c
+        entries:
+          type: array
+          items:
+            $ref: "#/components/schemas/Version"
+
+    Version:
+      type: object
+      required:
+        - name
+        - version
+        - hash
+      properties:
+        name:
+          type: string
+          example: labels
+        version:
+          type: integer
+          example: 9
+        hash:
+          type: string
+          example: a3025b34909d20d8650c82d9ff5735c140b7781aed3de9ee0cf250014f737ae6
+
+    Warning:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: kat.1234567890abcdef12345678_public_topics
+        sender:
+          description: Sender-ID, passende logos können über /appdata/gsb/logos/logos.json abgerufen werden
+          type: string
+          example: CAP@katwarn.de
+        sent:
+          type: string
+          format: date-time
+          example: 2021-09-24T13:37:35+02:00
+        status:
+          type: string
+          example: Actual
+        msgType:
+          type: string
+          example: Alert
+        scope:
+          type: string
+          example: Public
+        code:
+          type: array
+          items:
+            type: string
+          example:
+            - DVN:9
+        incidents:
+          type: string
+          example: 1234567890abcdef12345678
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: array
+                items:
+                  type: string
+                example:
+                  - Other
+              event:
+                type: string
+                example: Sonderfall
+              urgency:
+                type: string
+                example: Unknown
+              severity:
+                type: string
+                example: Severe
+              certainty:
+                type: string
+                example: Unknown
+              eventCode:
+                # description: 'Bekannte keys: profile:DE-BBK-EVENTCODE (value: Event Code ID)' # Not allowed in OpenAPI 3.0
+                $ref: "#/components/schemas/KeyValueArray"
+              effective:
+                type: string
+                format: date-time
+                example: 2021-09-24T13:38:00+02:00
+              senderName:
+                type: string
+                example: Feuerwehrleitstelle Musterstadt
+              headline:
+                type: string
+                example: "Feuerwehrleitstelle Musterstadt meldet: Warnung Sonderfall.  Gültig ab 01.09.2021, 11:11."
+              description:
+                type: string
+                example: "Es ist etwas passiert<br/>Belastung durch Beispiele Nachgewiesen<br/>Weitere informationen über..."
+              web:
+                type: string
+                example: "https://bund.dev"
+              parameter:
+                # description: 'Bekannte keys: instructionText, warnVerwaltungsbereiche, instructionCode, sender_langname, sender_signature, ZGEM' # Not allowed in OpenAPI 3.0
+                $ref: "#/components/schemas/KeyValueArray"
+              area:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    areaDesc:
+                      type: string
+                      example: Musterstadt
+                    geocode:
+                      # description: "Bekannte keys: AreaId" # Not allowed in OpenAPI 3.0
+                      $ref: "#/components/schemas/KeyValueArray"
+
+    KeyValueArray:
+      type: array
+      items:
+        type: object
+        properties:
+          valueName:
+            type: string
+            example: instructionCode
+          value:
+            type: string
+            example: BBK-ISC-132
