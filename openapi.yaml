@@ -3,14 +3,23 @@ info:
   description: "Erhalten Sie wichtige Warnmeldungen des Bevölkerungsschutzes für Gefahrenlagen wie zum Beispiel Gefahrstoffausbreitung oder Unwetter per Programmierschnittstelle."
   version: "1.0.0"
   title: "Bundesamt für Bevölkerungsschutz: NINA API"
+  contact:
+    url: "https://warnung.bund.de/"
 
 servers:
   - url: "https://warnung.bund.de/api31"
 
+tags:
+  - name: default
+
 paths:
   /dashboard/{AGS}.json:
     get:
+      operationId: getDashboard
       summary: Meldungsübersicht nach AGS
+      description: "Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region."
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -24,12 +33,16 @@ paths:
           name: AGS
           schema:
             type: string
-          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden. 
+          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
           example: "091620000000"
 
   /appdata/covid/covidrules/DE/{AGS}.json:
     get:
+      operationId: getAGSCovidRules
       summary: Corona Regelungen nach AGS
+      description: "Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region."
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -48,7 +61,11 @@ paths:
 
   /appdata/covid/covidinfos/DE/covidinfos.json:
     get:
+      operationId: getCovidInfos
       summary: Allgemeine Informationen zu Corona
+      description: "Erhalten Sie allgemeine Informationen zu Corona."
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -59,7 +76,11 @@ paths:
 
   /appdata/covid/covidticker/DE/covidticker.json:
     get:
+      operationId: getCovidTicker
       summary: Covid-Ticker
+      description: "Erhalten Sie die aktuellen Covid-Ticker Meldungen."
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -70,7 +91,11 @@ paths:
 
   /appdata/covid/covidticker/DE/tickermeldungen/{id}.json:
     get:
+      operationId: getCovidTickerMessage
       summary: Detailinformationen zu Covid-Ticker Meldungen
+      description: "Erhalten Sie Detailinformationen zu Covid-Ticker Meldungen."
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -89,8 +114,11 @@ paths:
 
   /appdata/covid/covidmap/DE/covidmap.json:
     get:
+      operationId: getCovidMap
       summary: Kartendaten für Corona-Fallzahlen.
       description: Die zugehörigen Geometrie-Daten sind über [https://warnung.bund.de/assets/json/converted_corona_kreise.json](https://warnung.bund.de/assets/json/converted_corona_kreise.json) abrufbar.
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -101,7 +129,11 @@ paths:
 
   /appdata/gsb/logos/logos.json:
     get:
+      operationId: getLogos
       summary: Liefert Namen und Logos für Sender-IDs
+      description: Liefert Namen und Logos für Sender-IDs
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -112,8 +144,11 @@ paths:
 
   /appdata/gsb/logos/{filename}:
     get:
+      operationId: getLogo
       summary: Logo-Bilddateien.
       description: Die verfügbaren Bilddateien und zugehörige Sender-IDs + Namen sind über /appdata/gsb/logos/logos.json abrufbar.
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -137,7 +172,11 @@ paths:
 
   /appdata/gsb/eventCodes/eventCodes.json:
     get:
+      operationId: getEventCodes
       summary: Liefert Namen und Logos für Sender-IDs
+      description: TODO
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -148,8 +187,11 @@ paths:
 
   /appdata/gsb/eventCodes/{filename}:
     get:
+      operationId: getEventCode
       summary: Event Code Bilddateien.
       description: Die verfügbaren Bilddateien und zugehörige Event Codes sind über /appdata/gsb/eventCodes/eventCodes.json abrufbar.
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -169,7 +211,11 @@ paths:
 
   /appdata/gsb/notfalltipps/DE/notfalltipps.json:
     get:
+      operationId: getNotfalltipps
       summary: Notfalltipps
+      description: Notfalltipps
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -180,7 +226,11 @@ paths:
 
   /appdata/gsb/faqs/DE/faq.json:
     get:
+      operationId: getFAQs
       summary: FAQs
+      description: FAQs
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -191,6 +241,11 @@ paths:
 
   /dynamic/version/dataVersion.json:
     get:
+      operationId: getDataVersion
+      summary: Liefert die Versionsnummer.
+      description: Liefert die Versionsnummer.
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -202,7 +257,11 @@ paths:
 
   /warnings/{identifier}.json:
     get:
+      operationId: getWarning
       summary: Detailinformation zu einer Warnung
+      description: Detailinformation zu einer Warnung
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -221,8 +280,11 @@ paths:
 
   /warnings/{identifier}.geojson:
     get:
+      operationId: getWarningGeoJSON
       summary: GeoJSON informationen zu einer Warnung.
       description: Datenformat entspricht [https://datatracker.ietf.org/doc/html/rfc7946#section-3](https://datatracker.ietf.org/doc/html/rfc7946#section-3)
+      tags:
+        - default
       responses:
         '200':
           description: OK
@@ -241,7 +303,11 @@ paths:
 
   /katwarn/mapData.json:
     get:
+      operationId: getKatwarnMapData
       summary: Katwarn Meldungen
+      description: Liefert die Katwarn-Meldungen für die Kartenansicht.
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -253,7 +319,11 @@ paths:
 
   /biwapp/mapData.json:
     get:
+      operationId: getBiwappMapData
       summary: Biwapp Meldungen
+      description: Liefert die Biwapp-Meldungen für die Kartenansicht.
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -264,7 +334,11 @@ paths:
 
   /mowas/mapData.json:
     get:
+      operationId: getMowasMapData
       summary: Mowas Meldungen
+      description: Liefert die Mowas-Meldungen für die Kartenansicht.
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -275,7 +349,11 @@ paths:
 
   /dwd/mapData.json:
     get:
+      operationId: getDwdMapData
       summary: Unwetterwarnungen des Deutschen Wetterdienstes
+      description: Liefert die Unwetterwarnungen des Deutschen Wetterdienstes für die Kartenansicht.
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -286,7 +364,11 @@ paths:
 
   /lhp/mapData.json:
     get:
+      operationId: getLhpMapData
       summary: 'Meldungen des Länderübergreifenden Hochwasserportals'
+      description: Liefert die Meldungen des Länderübergreifenden Hochwasserportals für die Kartenansicht.
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -297,7 +379,11 @@ paths:
 
   /police/mapData.json:
     get:
-      summary: ''
+      operationId: getPoliceMapData
+      summary: Polizeimeldungen
+      description: Liefert die Polizeimeldungen für die Kartenansicht.
+      tags:
+        - default
       responses:
         '200':
             description: OK
@@ -409,7 +495,7 @@ components:
           key:
             type: string
             example: "091620000000"
-          level: 
+          level:
             type: object
             properties:
               headline:
@@ -421,10 +507,10 @@ components:
               backgroundColor:
                 type: string
                 example: "#FFF280"
-              textColor: 
+              textColor:
                 type: string
                 example: "#000000"
-          generalInfo: 
+          generalInfo:
             type: string
             example: "<p><span>Grundsätzlich gilt: </span></p><p><span>Abstand + Hygiene + Maske im Alltag + Corona-Warn-App + Lüften</span></p><p><span data-stringify-type=paragraph-break/><span>Keine Testpflicht + keine Ausgangsbeschränkungen + keine Kontaktbeschränkungen für Geimpfte und Genesene</span></p>"
           rules:
