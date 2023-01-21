@@ -13,6 +13,7 @@ tags:
   - name: Warnings
   - name: Covid
   - name: default
+  - name: Archive
 
 paths:
   /dashboard/{ARS}.json:
@@ -392,6 +393,52 @@ paths:
               schema:
                 $ref: "#/components/schemas/MapWarnings"
 
+  /archive.mowas/{identifier}-mapping.json:
+    get:
+      operationId: getWarningHistory
+      summary: Gesammelter Verlauf einer MOWAS Warnung
+      description: Gesammelter Verlauf einer MOWAS Warnung
+      tags:
+        - Archive
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArchiveWarningHistory"
+      parameters:
+        - in: path
+          required: true
+          name: identifier
+          schema:
+            type: string
+          description: Meldungs-ID
+          example: mow.DE-NI-OL-W015-20230121-002
+
+  /archive.mowas/{identifier}.json:
+    get:
+      operationId: getWarningHistory
+      summary: Abruf einer archivierten MOWAS Warnung
+      description: Abruf einer archivierten MOWAS Warnung
+      tags:
+        - Archive
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Warning"
+      parameters:
+        - in: path
+          required: true
+          name: identifier
+          schema:
+            type: string
+          description: Meldungs-ID, gefolgt von "_" mit angehangenem Zeitstempel der Warnung im Format YYYYMMDDHHMMSS
+          example: mow.DE-NI-OL-W015-20230121-001_20230121112659
+
 components:
   schemas:
     MapWarnings:
@@ -422,6 +469,7 @@ components:
               de:
                 type: string
                 example: "Burgenlandkreis meldet: Warnung Sonderfall. Gültig ab 10.07.2021 11:58."
+
     ARSOverviewResult:
       type: array
       items:
@@ -1263,3 +1311,25 @@ components:
           value:
             type: string
             example: BBK-ISC-132
+
+    ArchiveWarningHistory:
+      type: object
+      properties:
+        history:
+          type: array
+          items: 
+            type: object
+            properties:
+              identifier:
+                type: string
+                example: mow.DE-NI-OL-W015-20230121-001_20230121112659.json
+              msgType:
+                type: string
+                example: ALERT
+              sent:
+                type: string
+                format: date-time
+                example: 2023-01-21T11:26:59+01:00
+              headline:
+                type: string
+                example: Rauchentwicklung und Geruchsbelästigung nach Großbrand - Westerstede, Halsbek
