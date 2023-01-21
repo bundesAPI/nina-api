@@ -15,10 +15,10 @@ tags:
   - name: default
 
 paths:
-  /dashboard/{AGS}.json:
+  /dashboard/{ARS}.json:
     get:
       operationId: getDashboard
-      summary: Meldungsübersicht nach AGS
+      summary: Meldungsübersicht nach ARS
       description: "Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region."
       tags:
         - Covid
@@ -28,20 +28,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AGSOverviewResult"
+                $ref: "#/components/schemas/ARSOverviewResult"
       parameters:
         - in: path
           required: true
-          name: AGS
+          name: ARS
           schema:
             type: string
-          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
+          description: Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
           example: "091620000000"
 
-  /appdata/covid/covidrules/DE/{AGS}.json:
+  /appdata/covid/covidrules/DE/{ARS}.json:
     get:
-      operationId: getAGSCovidRules
-      summary: Corona Regelungen nach AGS
+      operationId: getARSCovidRules
+      summary: Corona Regelungen nach ARS
       description: "Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region."
       tags:
         - Covid
@@ -51,14 +51,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AGSCovidRules"
+                $ref: "#/components/schemas/ARSCovidRules"
       parameters:
         - in: path
           required: true
-          name: AGS
+          name: ARS
           schema:
             type: string
-          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+          description: Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
           example: "091620000000"
 
   /appdata/covid/covidinfos/DE/covidinfos.json:
@@ -422,7 +422,7 @@ components:
               de:
                 type: string
                 example: "Burgenlandkreis meldet: Warnung Sonderfall. Gültig ab 10.07.2021 11:58."
-    AGSOverviewResult:
+    ARSOverviewResult:
       type: array
       items:
         type: object
@@ -488,7 +488,7 @@ components:
             format: date-time
             example: 2020-10-14T16:35:21+02:00
 
-    AGSCovidRules:
+    ARSCovidRules:
       type: object
       properties:
         key:
