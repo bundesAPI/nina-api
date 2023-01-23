@@ -12,17 +12,17 @@
 import sys
 import unittest
 
-from deutschland.nina.model.ags_covid_rules_common import AGSCovidRulesCommon
+from deutschland.nina.model.ags_covid_rules_common_inner import AGSCovidRulesCommonInner
 from deutschland.nina.model.ags_covid_rules_level import AGSCovidRulesLevel
 from deutschland.nina.model.ags_covid_rules_regulations import AGSCovidRulesRegulations
-from deutschland.nina.model.ags_covid_rules_rules import AGSCovidRulesRules
+from deutschland.nina.model.ags_covid_rules_rules_inner import AGSCovidRulesRulesInner
 
 from deutschland import nina
 
-globals()["AGSCovidRulesCommon"] = AGSCovidRulesCommon
+globals()["AGSCovidRulesCommonInner"] = AGSCovidRulesCommonInner
 globals()["AGSCovidRulesLevel"] = AGSCovidRulesLevel
 globals()["AGSCovidRulesRegulations"] = AGSCovidRulesRegulations
-globals()["AGSCovidRulesRules"] = AGSCovidRulesRules
+globals()["AGSCovidRulesRulesInner"] = AGSCovidRulesRulesInner
 from deutschland.nina.model.ags_covid_rules import AGSCovidRules
 
 

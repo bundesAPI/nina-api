@@ -12,9 +12,12 @@
 import sys
 import unittest
 
-from deutschland.nina.model.map_warnings import MapWarnings
+from deutschland.nina.model.map_warnings_inner import MapWarningsInner
 
 from deutschland import nina
+
+globals()["MapWarningsInner"] = MapWarningsInner
+from deutschland.nina.model.map_warnings import MapWarnings
 
 
 class TestMapWarnings(unittest.TestCase):

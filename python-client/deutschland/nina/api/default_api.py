@@ -14,9 +14,11 @@ import sys  # noqa: F401
 
 from deutschland.nina.api_client import ApiClient
 from deutschland.nina.api_client import Endpoint as _Endpoint
-from deutschland.nina.model.ags_covid_rules import AGSCovidRules
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
-from deutschland.nina.model.map_warnings import MapWarnings
+from deutschland.nina.model.event_code_collection import EventCodeCollection
+from deutschland.nina.model.faq_collection import FAQCollection
+from deutschland.nina.model.logo_collection import LogoCollection
+from deutschland.nina.model.notfalltipps import Notfalltipps
+from deutschland.nina.model.version_collection import VersionCollection
 from deutschland.nina.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
@@ -39,21 +41,51 @@ class DefaultApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.appdata_covid_covidrules_deags_json_get_endpoint = _Endpoint(
+        self.get_data_version_endpoint = _Endpoint(
             settings={
-                "response_type": (AGSCovidRules,),
+                "response_type": (VersionCollection,),
                 "auth": [],
-                "endpoint_path": "/appdata/covid/covidrules/DE/{AGS}.json",
-                "operation_id": "appdata_covid_covidrules_deags_json_get",
+                "endpoint_path": "/dynamic/version/dataVersion.json",
+                "operation_id": "get_data_version",
+                "http_method": "GET",
+                "servers": None,
+            },
+            params_map={
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
+            },
+            root_map={
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
+            },
+            headers_map={
+                "accept": ["application/json"],
+                "content_type": [],
+            },
+            api_client=api_client,
+        )
+        self.get_event_code_endpoint = _Endpoint(
+            settings={
+                "response_type": (file_type,),
+                "auth": [],
+                "endpoint_path": "/appdata/gsb/eventCodes/{filename}",
+                "operation_id": "get_event_code",
                 "http_method": "GET",
                 "servers": None,
             },
             params_map={
                 "all": [
-                    "ags",
+                    "filename",
                 ],
                 "required": [
-                    "ags",
+                    "filename",
                 ],
                 "nullable": [],
                 "enum": [],
@@ -63,28 +95,28 @@ class DefaultApi(object):
                 "validations": {},
                 "allowed_values": {},
                 "openapi_types": {
-                    "ags": (str,),
+                    "filename": (str,),
                 },
                 "attribute_map": {
-                    "ags": "AGS",
+                    "filename": "filename",
                 },
                 "location_map": {
-                    "ags": "path",
+                    "filename": "path",
                 },
                 "collection_format_map": {},
             },
             headers_map={
-                "accept": ["application/json"],
+                "accept": ["image/png"],
                 "content_type": [],
             },
             api_client=api_client,
         )
-        self.biwapp_map_data_json_get_endpoint = _Endpoint(
+        self.get_event_codes_endpoint = _Endpoint(
             settings={
-                "response_type": (MapWarnings,),
+                "response_type": (EventCodeCollection,),
                 "auth": [],
-                "endpoint_path": "/biwapp/mapData.json",
-                "operation_id": "biwapp_map_data_json_get",
+                "endpoint_path": "/appdata/gsb/eventCodes/eventCodes.json",
+                "operation_id": "get_event_codes",
                 "http_method": "GET",
                 "servers": None,
             },
@@ -109,21 +141,51 @@ class DefaultApi(object):
             },
             api_client=api_client,
         )
-        self.dashboard_ags_json_get_endpoint = _Endpoint(
+        self.get_faqs_endpoint = _Endpoint(
             settings={
-                "response_type": (AGSOverviewResult,),
+                "response_type": (FAQCollection,),
                 "auth": [],
-                "endpoint_path": "/dashboard/{AGS}.json",
-                "operation_id": "dashboard_ags_json_get",
+                "endpoint_path": "/appdata/gsb/faqs/DE/faq.json",
+                "operation_id": "get_faqs",
+                "http_method": "GET",
+                "servers": None,
+            },
+            params_map={
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
+            },
+            root_map={
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
+            },
+            headers_map={
+                "accept": ["application/json"],
+                "content_type": [],
+            },
+            api_client=api_client,
+        )
+        self.get_logo_endpoint = _Endpoint(
+            settings={
+                "response_type": (file_type,),
+                "auth": [],
+                "endpoint_path": "/appdata/gsb/logos/{filename}",
+                "operation_id": "get_logo",
                 "http_method": "GET",
                 "servers": None,
             },
             params_map={
                 "all": [
-                    "ags",
+                    "filename",
                 ],
                 "required": [
-                    "ags",
+                    "filename",
                 ],
                 "nullable": [],
                 "enum": [],
@@ -133,28 +195,28 @@ class DefaultApi(object):
                 "validations": {},
                 "allowed_values": {},
                 "openapi_types": {
-                    "ags": (str,),
+                    "filename": (str,),
                 },
                 "attribute_map": {
-                    "ags": "AGS",
+                    "filename": "filename",
                 },
                 "location_map": {
-                    "ags": "path",
+                    "filename": "path",
                 },
                 "collection_format_map": {},
             },
             headers_map={
-                "accept": ["application/json"],
+                "accept": ["image/png", "image/jpeg"],
                 "content_type": [],
             },
             api_client=api_client,
         )
-        self.katwarn_map_data_json_get_endpoint = _Endpoint(
+        self.get_logos_endpoint = _Endpoint(
             settings={
-                "response_type": (MapWarnings,),
+                "response_type": (LogoCollection,),
                 "auth": [],
-                "endpoint_path": "/katwarn/mapData.json",
-                "operation_id": "katwarn_map_data_json_get",
+                "endpoint_path": "/appdata/gsb/logos/logos.json",
+                "operation_id": "get_logos",
                 "http_method": "GET",
                 "servers": None,
             },
@@ -179,12 +241,12 @@ class DefaultApi(object):
             },
             api_client=api_client,
         )
-        self.mowas_map_data_json_get_endpoint = _Endpoint(
+        self.get_notfalltipps_endpoint = _Endpoint(
             settings={
-                "response_type": (MapWarnings,),
+                "response_type": (Notfalltipps,),
                 "auth": [],
-                "endpoint_path": "/mowas/mapData.json",
-                "operation_id": "mowas_map_data_json_get",
+                "endpoint_path": "/appdata/gsb/notfalltipps/DE/notfalltipps.json",
+                "operation_id": "get_notfalltipps",
                 "http_method": "GET",
                 "servers": None,
             },
@@ -210,17 +272,78 @@ class DefaultApi(object):
             api_client=api_client,
         )
 
-    def appdata_covid_covidrules_deags_json_get(self, ags, **kwargs):
-        """Corona Regelungen nach AGS  # noqa: E501
+    def get_data_version(self, **kwargs):
+        """Liefert die Versionsnummer.  # noqa: E501
 
+        Liefert die Versionsnummer.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.appdata_covid_covidrules_deags_json_get(ags, async_req=True)
+        >>> thread = api.get_data_version(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            VersionCollection
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        return self.get_data_version_endpoint.call_with_http_info(**kwargs)
+
+    def get_event_code(self, filename, **kwargs):
+        """Event Code Bilddateien.  # noqa: E501
+
+        Die verfügbaren Bilddateien und zugehörige Event Codes sind über /appdata/gsb/eventCodes/eventCodes.json abrufbar.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_event_code(filename, async_req=True)
         >>> result = thread.get()
 
         Args:
-            ags (str): Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+            filename (str): Logo-Dateiname
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -238,13 +361,24 @@ class DefaultApi(object):
             _check_return_type (bool): specifies if type checking
                 should be done one the data received from the server.
                 Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
-            AGSCovidRules
+            file_type
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -254,21 +388,21 @@ class DefaultApi(object):
         kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["ags"] = ags
-        return (
-            self.appdata_covid_covidrules_deags_json_get_endpoint.call_with_http_info(
-                **kwargs
-            )
-        )
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        kwargs["filename"] = filename
+        return self.get_event_code_endpoint.call_with_http_info(**kwargs)
 
-    def biwapp_map_data_json_get(self, **kwargs):
-        """Biwapp Meldungen  # noqa: E501
+    def get_event_codes(self, **kwargs):
+        """Liefert Event Codes und Name der Bilddateien.  # noqa: E501
 
+        Liefert Event Codes und Name der Bilddateien für verschiedene Event Codes.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.biwapp_map_data_json_get(async_req=True)
+        >>> thread = api.get_event_codes(async_req=True)
         >>> result = thread.get()
 
 
@@ -288,13 +422,24 @@ class DefaultApi(object):
             _check_return_type (bool): specifies if type checking
                 should be done one the data received from the server.
                 Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
-            MapWarnings
+            EventCodeCollection
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -304,20 +449,84 @@ class DefaultApi(object):
         kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        return self.biwapp_map_data_json_get_endpoint.call_with_http_info(**kwargs)
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        return self.get_event_codes_endpoint.call_with_http_info(**kwargs)
 
-    def dashboard_ags_json_get(self, ags, **kwargs):
-        """Meldungsübersicht nach AGS  # noqa: E501
+    def get_faqs(self, **kwargs):
+        """FAQs  # noqa: E501
 
+        FAQs rund um die Warn-App NINA.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.dashboard_ags_json_get(ags, async_req=True)
+        >>> thread = api.get_faqs(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            FAQCollection
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        return self.get_faqs_endpoint.call_with_http_info(**kwargs)
+
+    def get_logo(self, filename, **kwargs):
+        """Logo-Bilddateien.  # noqa: E501
+
+        Die verfügbaren Bilddateien und zugehörige Sender-IDs + Namen sind über /appdata/gsb/logos/logos.json abrufbar.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_logo(filename, async_req=True)
         >>> result = thread.get()
 
         Args:
-            ags (str): Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
+            filename (str): Logo-Dateiname
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -335,13 +544,24 @@ class DefaultApi(object):
             _check_return_type (bool): specifies if type checking
                 should be done one the data received from the server.
                 Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
-            AGSOverviewResult
+            file_type
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -351,17 +571,21 @@ class DefaultApi(object):
         kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        kwargs["ags"] = ags
-        return self.dashboard_ags_json_get_endpoint.call_with_http_info(**kwargs)
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        kwargs["filename"] = filename
+        return self.get_logo_endpoint.call_with_http_info(**kwargs)
 
-    def katwarn_map_data_json_get(self, **kwargs):
-        """Katwarn Meldungen  # noqa: E501
+    def get_logos(self, **kwargs):
+        """Liefert Namen und Logos für Sender-IDs  # noqa: E501
 
+        Liefert Namen und Logos für Sender-IDs  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.katwarn_map_data_json_get(async_req=True)
+        >>> thread = api.get_logos(async_req=True)
         >>> result = thread.get()
 
 
@@ -381,13 +605,24 @@ class DefaultApi(object):
             _check_return_type (bool): specifies if type checking
                 should be done one the data received from the server.
                 Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
-            MapWarnings
+            LogoCollection
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -397,16 +632,20 @@ class DefaultApi(object):
         kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        return self.katwarn_map_data_json_get_endpoint.call_with_http_info(**kwargs)
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        return self.get_logos_endpoint.call_with_http_info(**kwargs)
 
-    def mowas_map_data_json_get(self, **kwargs):
-        """Mowas Meldungen  # noqa: E501
+    def get_notfalltipps(self, **kwargs):
+        """Notfalltipps  # noqa: E501
 
+        Liefert eine List von Notfalltipps für verschiedene Gefahrenlagen.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.mowas_map_data_json_get(async_req=True)
+        >>> thread = api.get_notfalltipps(async_req=True)
         >>> result = thread.get()
 
 
@@ -426,13 +665,24 @@ class DefaultApi(object):
             _check_return_type (bool): specifies if type checking
                 should be done one the data received from the server.
                 Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
             _host_index (int/None): specifies the index of the server
                 that we want to use.
                 Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
             async_req (bool): execute request asynchronously
 
         Returns:
-            MapWarnings
+            Notfalltipps
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -442,5 +692,8 @@ class DefaultApi(object):
         kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
         kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
         kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
-        return self.mowas_map_data_json_get_endpoint.call_with_http_info(**kwargs)
+        kwargs["_request_auths"] = kwargs.get("_request_auths", None)
+        return self.get_notfalltipps_endpoint.call_with_http_info(**kwargs)

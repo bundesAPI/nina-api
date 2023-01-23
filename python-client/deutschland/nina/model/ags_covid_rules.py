@@ -31,17 +31,21 @@ from deutschland.nina.model_utils import (  # noqa: F401
 
 
 def lazy_import():
-    from deutschland.nina.model.ags_covid_rules_common import AGSCovidRulesCommon
+    from deutschland.nina.model.ags_covid_rules_common_inner import (
+        AGSCovidRulesCommonInner,
+    )
     from deutschland.nina.model.ags_covid_rules_level import AGSCovidRulesLevel
     from deutschland.nina.model.ags_covid_rules_regulations import (
         AGSCovidRulesRegulations,
     )
-    from deutschland.nina.model.ags_covid_rules_rules import AGSCovidRulesRules
+    from deutschland.nina.model.ags_covid_rules_rules_inner import (
+        AGSCovidRulesRulesInner,
+    )
 
-    globals()["AGSCovidRulesCommon"] = AGSCovidRulesCommon
+    globals()["AGSCovidRulesCommonInner"] = AGSCovidRulesCommonInner
     globals()["AGSCovidRulesLevel"] = AGSCovidRulesLevel
     globals()["AGSCovidRulesRegulations"] = AGSCovidRulesRegulations
-    globals()["AGSCovidRulesRules"] = AGSCovidRulesRules
+    globals()["AGSCovidRulesRulesInner"] = AGSCovidRulesRulesInner
 
 
 class AGSCovidRules(ModelNormal):
@@ -108,9 +112,9 @@ class AGSCovidRules(ModelNormal):
             "key": (str,),  # noqa: E501
             "level": (AGSCovidRulesLevel,),  # noqa: E501
             "general_info": (str,),  # noqa: E501
-            "rules": ([AGSCovidRulesRules],),  # noqa: E501
+            "rules": ([AGSCovidRulesRulesInner],),  # noqa: E501
             "regulations": (AGSCovidRulesRegulations,),  # noqa: E501
-            "common": ([AGSCovidRulesCommon],),  # noqa: E501
+            "common": ([AGSCovidRulesCommonInner],),  # noqa: E501
         }
 
     @cached_property
@@ -169,13 +173,13 @@ class AGSCovidRules(ModelNormal):
             key (str): [optional]  # noqa: E501
             level (AGSCovidRulesLevel): [optional]  # noqa: E501
             general_info (str): [optional]  # noqa: E501
-            rules ([AGSCovidRulesRules]): [optional]  # noqa: E501
+            rules ([AGSCovidRulesRulesInner]): [optional]  # noqa: E501
             regulations (AGSCovidRulesRegulations): [optional]  # noqa: E501
-            common ([AGSCovidRulesCommon]): [optional]  # noqa: E501
+            common ([AGSCovidRulesCommonInner]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop("_check_type", True)
-        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", True)
         _path_to_item = kwargs.pop("_path_to_item", ())
         _configuration = kwargs.pop("_configuration", None)
         _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
@@ -183,15 +187,19 @@ class AGSCovidRules(ModelNormal):
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
-            raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
-                % (
-                    args,
-                    self.__class__.__name__,
-                ),
-                path_to_item=_path_to_item,
-                valid_classes=(self.__class__,),
-            )
+            for arg in args:
+                if isinstance(arg, dict):
+                    kwargs.update(arg)
+                else:
+                    raise ApiTypeError(
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                        % (
+                            args,
+                            self.__class__.__name__,
+                        ),
+                        path_to_item=_path_to_item,
+                        valid_classes=(self.__class__,),
+                    )
 
         self._data_store = {}
         self._check_type = _check_type
@@ -261,9 +269,9 @@ class AGSCovidRules(ModelNormal):
             key (str): [optional]  # noqa: E501
             level (AGSCovidRulesLevel): [optional]  # noqa: E501
             general_info (str): [optional]  # noqa: E501
-            rules ([AGSCovidRulesRules]): [optional]  # noqa: E501
+            rules ([AGSCovidRulesRulesInner]): [optional]  # noqa: E501
             regulations (AGSCovidRulesRegulations): [optional]  # noqa: E501
-            common ([AGSCovidRulesCommon]): [optional]  # noqa: E501
+            common ([AGSCovidRulesCommonInner]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop("_check_type", True)
@@ -273,15 +281,19 @@ class AGSCovidRules(ModelNormal):
         _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         if args:
-            raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
-                % (
-                    args,
-                    self.__class__.__name__,
-                ),
-                path_to_item=_path_to_item,
-                valid_classes=(self.__class__,),
-            )
+            for arg in args:
+                if isinstance(arg, dict):
+                    kwargs.update(arg)
+                else:
+                    raise ApiTypeError(
+                        "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                        % (
+                            args,
+                            self.__class__.__name__,
+                        ),
+                        path_to_item=_path_to_item,
+                        valid_classes=(self.__class__,),
+                    )
 
         self._data_store = {}
         self._check_type = _check_type

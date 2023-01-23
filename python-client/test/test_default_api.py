@@ -25,38 +25,52 @@ class TestDefaultApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_appdata_covid_covidrules_deags_json_get(self):
-        """Test case for appdata_covid_covidrules_deags_json_get
+    def test_get_data_version(self):
+        """Test case for get_data_version
 
-        Corona Regelungen nach AGS  # noqa: E501
+        Liefert die Versionsnummer.  # noqa: E501
         """
         pass
 
-    def test_biwapp_map_data_json_get(self):
-        """Test case for biwapp_map_data_json_get
+    def test_get_event_code(self):
+        """Test case for get_event_code
 
-        Biwapp Meldungen  # noqa: E501
+        Event Code Bilddateien.  # noqa: E501
         """
         pass
 
-    def test_dashboard_ags_json_get(self):
-        """Test case for dashboard_ags_json_get
+    def test_get_event_codes(self):
+        """Test case for get_event_codes
 
-        Meldungsübersicht nach AGS  # noqa: E501
+        Liefert Event Codes und Name der Bilddateien.  # noqa: E501
         """
         pass
 
-    def test_katwarn_map_data_json_get(self):
-        """Test case for katwarn_map_data_json_get
+    def test_get_faqs(self):
+        """Test case for get_faqs
 
-        Katwarn Meldungen  # noqa: E501
+        FAQs  # noqa: E501
         """
         pass
 
-    def test_mowas_map_data_json_get(self):
-        """Test case for mowas_map_data_json_get
+    def test_get_logo(self):
+        """Test case for get_logo
 
-        Mowas Meldungen  # noqa: E501
+        Logo-Bilddateien.  # noqa: E501
+        """
+        pass
+
+    def test_get_logos(self):
+        """Test case for get_logos
+
+        Liefert Namen und Logos für Sender-IDs  # noqa: E501
+        """
+        pass
+
+    def test_get_notfalltipps(self):
+        """Test case for get_notfalltipps
+
+        Notfalltipps  # noqa: E501
         """
         pass
 

@@ -5,7 +5,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.default_api import DefaultApi
+#   from deutschland.nina.api.covid_api import CovidApi
 #
 # or import this package, but before doing it, use:
 #
@@ -13,4 +13,6 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
+from deutschland.nina.api.covid_api import CovidApi
 from deutschland.nina.api.default_api import DefaultApi
+from deutschland.nina.api.warnings_api import WarningsApi

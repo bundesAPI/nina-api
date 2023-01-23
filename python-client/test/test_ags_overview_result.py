@@ -12,9 +12,12 @@
 import sys
 import unittest
 
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
+from deutschland.nina.model.ags_overview_result_inner import AGSOverviewResultInner
 
 from deutschland import nina
+
+globals()["AGSOverviewResultInner"] = AGSOverviewResultInner
+from deutschland.nina.model.ags_overview_result import AGSOverviewResult
 
 
 class TestAGSOverviewResult(unittest.TestCase):

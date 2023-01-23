@@ -4,17 +4,21 @@ All URIs are relative to *https://warnung.bund.de/api31*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**appdata_covid_covidrules_deags_json_get**](DefaultApi.md#appdata_covid_covidrules_deags_json_get) | **GET** /appdata/covid/covidrules/DE/{AGS}.json | Corona Regelungen nach AGS
-[**biwapp_map_data_json_get**](DefaultApi.md#biwapp_map_data_json_get) | **GET** /biwapp/mapData.json | Biwapp Meldungen
-[**dashboard_ags_json_get**](DefaultApi.md#dashboard_ags_json_get) | **GET** /dashboard/{AGS}.json | Meldungsübersicht nach AGS
-[**katwarn_map_data_json_get**](DefaultApi.md#katwarn_map_data_json_get) | **GET** /katwarn/mapData.json | Katwarn Meldungen
-[**mowas_map_data_json_get**](DefaultApi.md#mowas_map_data_json_get) | **GET** /mowas/mapData.json | Mowas Meldungen
+[**get_data_version**](DefaultApi.md#get_data_version) | **GET** /dynamic/version/dataVersion.json | Liefert die Versionsnummer.
+[**get_event_code**](DefaultApi.md#get_event_code) | **GET** /appdata/gsb/eventCodes/{filename} | Event Code Bilddateien.
+[**get_event_codes**](DefaultApi.md#get_event_codes) | **GET** /appdata/gsb/eventCodes/eventCodes.json | Liefert Event Codes und Name der Bilddateien.
+[**get_faqs**](DefaultApi.md#get_faqs) | **GET** /appdata/gsb/faqs/DE/faq.json | FAQs
+[**get_logo**](DefaultApi.md#get_logo) | **GET** /appdata/gsb/logos/{filename} | Logo-Bilddateien.
+[**get_logos**](DefaultApi.md#get_logos) | **GET** /appdata/gsb/logos/logos.json | Liefert Namen und Logos für Sender-IDs
+[**get_notfalltipps**](DefaultApi.md#get_notfalltipps) | **GET** /appdata/gsb/notfalltipps/DE/notfalltipps.json | Notfalltipps
 
 
-# **appdata_covid_covidrules_deags_json_get**
-> AGSCovidRules appdata_covid_covidrules_deags_json_get(ags)
+# **get_data_version**
+> VersionCollection get_data_version()
 
-Corona Regelungen nach AGS
+Liefert die Versionsnummer.
+
+Liefert die Versionsnummer.
 
 ### Example
 
@@ -23,7 +27,7 @@ Corona Regelungen nach AGS
 import time
 from deutschland import nina
 from deutschland.nina.api import default_api
-from deutschland.nina.model.ags_covid_rules import AGSCovidRules
+from deutschland.nina.model.version_collection import VersionCollection
 from pprint import pprint
 # Defining the host is optional and defaults to https://warnung.bund.de/api31
 # See configuration.py for a list of all supported configuration parameters.
@@ -36,15 +40,77 @@ configuration = nina.Configuration(
 with nina.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    ags = "091620000000" # str | Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Liefert die Versionsnummer.
+        api_response = api_instance.get_data_version()
+        pprint(api_response)
+    except nina.ApiException as e:
+        print("Exception when calling DefaultApi->get_data_version: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**VersionCollection**](VersionCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_event_code**
+> file_type get_event_code(filename)
+
+Event Code Bilddateien.
+
+Die verfügbaren Bilddateien und zugehörige Event Codes sind über /appdata/gsb/eventCodes/eventCodes.json abrufbar.
+
+### Example
+
+
+```python
+import time
+from deutschland import nina
+from deutschland.nina.api import default_api
+from pprint import pprint
+# Defining the host is optional and defaults to https://warnung.bund.de/api31
+# See configuration.py for a list of all supported configuration parameters.
+configuration = nina.Configuration(
+    host = "https://warnung.bund.de/api31"
+)
+
+
+# Enter a context with an instance of the API client
+with nina.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    filename = "BBK-EVC-001.png" # str | Logo-Dateiname
 
     # example passing only required values which don't have defaults set
     try:
-        # Corona Regelungen nach AGS
-        api_response = api_instance.appdata_covid_covidrules_deags_json_get(ags)
+        # Event Code Bilddateien.
+        api_response = api_instance.get_event_code(filename)
         pprint(api_response)
     except nina.ApiException as e:
-        print("Exception when calling DefaultApi->appdata_covid_covidrules_deags_json_get: %s\n" % e)
+        print("Exception when calling DefaultApi->get_event_code: %s\n" % e)
 ```
 
 
@@ -52,11 +118,11 @@ with nina.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ags** | **str**| Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. |
+ **filename** | **str**| Logo-Dateiname |
 
 ### Return type
 
-[**AGSCovidRules**](AGSCovidRules.md)
+**file_type**
 
 ### Authorization
 
@@ -65,7 +131,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: image/png
 
 
 ### HTTP response details
@@ -76,10 +142,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **biwapp_map_data_json_get**
-> MapWarnings biwapp_map_data_json_get()
+# **get_event_codes**
+> EventCodeCollection get_event_codes()
 
-Biwapp Meldungen
+Liefert Event Codes und Name der Bilddateien.
+
+Liefert Event Codes und Name der Bilddateien für verschiedene Event Codes.
 
 ### Example
 
@@ -88,7 +156,7 @@ Biwapp Meldungen
 import time
 from deutschland import nina
 from deutschland.nina.api import default_api
-from deutschland.nina.model.map_warnings import MapWarnings
+from deutschland.nina.model.event_code_collection import EventCodeCollection
 from pprint import pprint
 # Defining the host is optional and defaults to https://warnung.bund.de/api31
 # See configuration.py for a list of all supported configuration parameters.
@@ -104,11 +172,11 @@ with nina.ApiClient() as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Biwapp Meldungen
-        api_response = api_instance.biwapp_map_data_json_get()
+        # Liefert Event Codes und Name der Bilddateien.
+        api_response = api_instance.get_event_codes()
         pprint(api_response)
     except nina.ApiException as e:
-        print("Exception when calling DefaultApi->biwapp_map_data_json_get: %s\n" % e)
+        print("Exception when calling DefaultApi->get_event_codes: %s\n" % e)
 ```
 
 
@@ -117,7 +185,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**MapWarnings**](MapWarnings.md)
+[**EventCodeCollection**](EventCodeCollection.md)
 
 ### Authorization
 
@@ -137,10 +205,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **dashboard_ags_json_get**
-> AGSOverviewResult dashboard_ags_json_get(ags)
+# **get_faqs**
+> FAQCollection get_faqs()
 
-Meldungsübersicht nach AGS
+FAQs
+
+FAQs rund um die Warn-App NINA.
 
 ### Example
 
@@ -149,7 +219,7 @@ Meldungsübersicht nach AGS
 import time
 from deutschland import nina
 from deutschland.nina.api import default_api
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
+from deutschland.nina.model.faq_collection import FAQCollection
 from pprint import pprint
 # Defining the host is optional and defaults to https://warnung.bund.de/api31
 # See configuration.py for a list of all supported configuration parameters.
@@ -162,15 +232,77 @@ configuration = nina.Configuration(
 with nina.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    ags = "091620000000" # str | Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # FAQs
+        api_response = api_instance.get_faqs()
+        pprint(api_response)
+    except nina.ApiException as e:
+        print("Exception when calling DefaultApi->get_faqs: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**FAQCollection**](FAQCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_logo**
+> file_type get_logo(filename)
+
+Logo-Bilddateien.
+
+Die verfügbaren Bilddateien und zugehörige Sender-IDs + Namen sind über /appdata/gsb/logos/logos.json abrufbar.
+
+### Example
+
+
+```python
+import time
+from deutschland import nina
+from deutschland.nina.api import default_api
+from pprint import pprint
+# Defining the host is optional and defaults to https://warnung.bund.de/api31
+# See configuration.py for a list of all supported configuration parameters.
+configuration = nina.Configuration(
+    host = "https://warnung.bund.de/api31"
+)
+
+
+# Enter a context with an instance of the API client
+with nina.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    filename = "dwd_logo.png" # str | Logo-Dateiname
 
     # example passing only required values which don't have defaults set
     try:
-        # Meldungsübersicht nach AGS
-        api_response = api_instance.dashboard_ags_json_get(ags)
+        # Logo-Bilddateien.
+        api_response = api_instance.get_logo(filename)
         pprint(api_response)
     except nina.ApiException as e:
-        print("Exception when calling DefaultApi->dashboard_ags_json_get: %s\n" % e)
+        print("Exception when calling DefaultApi->get_logo: %s\n" % e)
 ```
 
 
@@ -178,11 +310,74 @@ with nina.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ags** | **str**| Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \&quot;0000000\&quot; ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden. |
+ **filename** | **str**| Logo-Dateiname |
 
 ### Return type
 
-[**AGSOverviewResult**](AGSOverviewResult.md)
+**file_type**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: image/png, image/jpeg
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_logos**
+> LogoCollection get_logos()
+
+Liefert Namen und Logos für Sender-IDs
+
+Liefert Namen und Logos für Sender-IDs
+
+### Example
+
+
+```python
+import time
+from deutschland import nina
+from deutschland.nina.api import default_api
+from deutschland.nina.model.logo_collection import LogoCollection
+from pprint import pprint
+# Defining the host is optional and defaults to https://warnung.bund.de/api31
+# See configuration.py for a list of all supported configuration parameters.
+configuration = nina.Configuration(
+    host = "https://warnung.bund.de/api31"
+)
+
+
+# Enter a context with an instance of the API client
+with nina.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # Liefert Namen und Logos für Sender-IDs
+        api_response = api_instance.get_logos()
+        pprint(api_response)
+    except nina.ApiException as e:
+        print("Exception when calling DefaultApi->get_logos: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**LogoCollection**](LogoCollection.md)
 
 ### Authorization
 
@@ -202,10 +397,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **katwarn_map_data_json_get**
-> MapWarnings katwarn_map_data_json_get()
+# **get_notfalltipps**
+> Notfalltipps get_notfalltipps()
 
-Katwarn Meldungen
+Notfalltipps
+
+Liefert eine List von Notfalltipps für verschiedene Gefahrenlagen.
 
 ### Example
 
@@ -214,7 +411,7 @@ Katwarn Meldungen
 import time
 from deutschland import nina
 from deutschland.nina.api import default_api
-from deutschland.nina.model.map_warnings import MapWarnings
+from deutschland.nina.model.notfalltipps import Notfalltipps
 from pprint import pprint
 # Defining the host is optional and defaults to https://warnung.bund.de/api31
 # See configuration.py for a list of all supported configuration parameters.
@@ -230,11 +427,11 @@ with nina.ApiClient() as api_client:
 
     # example, this endpoint has no required or optional parameters
     try:
-        # Katwarn Meldungen
-        api_response = api_instance.katwarn_map_data_json_get()
+        # Notfalltipps
+        api_response = api_instance.get_notfalltipps()
         pprint(api_response)
     except nina.ApiException as e:
-        print("Exception when calling DefaultApi->katwarn_map_data_json_get: %s\n" % e)
+        print("Exception when calling DefaultApi->get_notfalltipps: %s\n" % e)
 ```
 
 
@@ -243,68 +440,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**MapWarnings**](MapWarnings.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **mowas_map_data_json_get**
-> MapWarnings mowas_map_data_json_get()
-
-Mowas Meldungen
-
-### Example
-
-
-```python
-import time
-from deutschland import nina
-from deutschland.nina.api import default_api
-from deutschland.nina.model.map_warnings import MapWarnings
-from pprint import pprint
-# Defining the host is optional and defaults to https://warnung.bund.de/api31
-# See configuration.py for a list of all supported configuration parameters.
-configuration = nina.Configuration(
-    host = "https://warnung.bund.de/api31"
-)
-
-
-# Enter a context with an instance of the API client
-with nina.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Mowas Meldungen
-        api_response = api_instance.mowas_map_data_json_get()
-        pprint(api_response)
-    except nina.ApiException as e:
-        print("Exception when calling DefaultApi->mowas_map_data_json_get: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**MapWarnings**](MapWarnings.md)
+[**Notfalltipps**](Notfalltipps.md)
 
 ### Authorization
 
