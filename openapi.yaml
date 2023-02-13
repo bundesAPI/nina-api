@@ -21,7 +21,7 @@ paths:
       summary: Meldungsübersicht nach AGS
       description: "Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region."
       tags:
-        - Covid
+        - Warnings
       responses:
         "200":
           description: OK
