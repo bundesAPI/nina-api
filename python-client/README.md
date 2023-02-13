@@ -52,7 +52,6 @@ from deutschland import nina
 from pprint import pprint
 from deutschland.nina.api import covid_api
 from deutschland.nina.model.ags_covid_rules import AGSCovidRules
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
 from deutschland.nina.model.covid_infos import CovidInfos
 from deutschland.nina.model.covid_map import CovidMap
 from deutschland.nina.model.covid_ticker import CovidTicker
@@ -90,8 +89,8 @@ Class | Method | HTTP request | Description
 *CovidApi* | [**get_covid_map**](docs/CovidApi.md#get_covid_map) | **GET** /appdata/covid/covidmap/DE/covidmap.json | Kartendaten für Corona-Fallzahlen.
 *CovidApi* | [**get_covid_ticker**](docs/CovidApi.md#get_covid_ticker) | **GET** /appdata/covid/covidticker/DE/covidticker.json | Covid-Ticker
 *CovidApi* | [**get_covid_ticker_message**](docs/CovidApi.md#get_covid_ticker_message) | **GET** /appdata/covid/covidticker/DE/tickermeldungen/{id}.json | Detailinformationen zu Covid-Ticker Meldungen
-*CovidApi* | [**get_dashboard**](docs/CovidApi.md#get_dashboard) | **GET** /dashboard/{AGS}.json | Meldungsübersicht nach AGS
 *WarningsApi* | [**get_biwapp_map_data**](docs/WarningsApi.md#get_biwapp_map_data) | **GET** /biwapp/mapData.json | Biwapp Meldungen
+*WarningsApi* | [**get_dashboard**](docs/WarningsApi.md#get_dashboard) | **GET** /dashboard/{AGS}.json | Meldungsübersicht nach AGS
 *WarningsApi* | [**get_dwd_map_data**](docs/WarningsApi.md#get_dwd_map_data) | **GET** /dwd/mapData.json | Unwetterwarnungen des Deutschen Wetterdienstes
 *WarningsApi* | [**get_katwarn_map_data**](docs/WarningsApi.md#get_katwarn_map_data) | **GET** /katwarn/mapData.json | Katwarn Meldungen
 *WarningsApi* | [**get_lhp_map_data**](docs/WarningsApi.md#get_lhp_map_data) | **GET** /lhp/mapData.json | Meldungen des Länderübergreifenden Hochwasserportals

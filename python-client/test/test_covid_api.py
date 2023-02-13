@@ -60,13 +60,6 @@ class TestCovidApi(unittest.TestCase):
         """
         pass
 
-    def test_get_dashboard(self):
-        """Test case for get_dashboard
-
-        Meldungsübersicht nach AGS  # noqa: E501
-        """
-        pass
-
 
 if __name__ == "__main__":
     unittest.main()

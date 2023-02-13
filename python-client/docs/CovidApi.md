@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**get_covid_map**](CovidApi.md#get_covid_map) | **GET** /appdata/covid/covidmap/DE/covidmap.json | Kartendaten für Corona-Fallzahlen.
 [**get_covid_ticker**](CovidApi.md#get_covid_ticker) | **GET** /appdata/covid/covidticker/DE/covidticker.json | Covid-Ticker
 [**get_covid_ticker_message**](CovidApi.md#get_covid_ticker_message) | **GET** /appdata/covid/covidticker/DE/tickermeldungen/{id}.json | Detailinformationen zu Covid-Ticker Meldungen
-[**get_dashboard**](CovidApi.md#get_dashboard) | **GET** /dashboard/{AGS}.json | Meldungsübersicht nach AGS
 
 
 # **get_ags_covid_rules**
@@ -316,73 +315,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CovidTickerMessage**](CovidTickerMessage.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_dashboard**
-> AGSOverviewResult get_dashboard(ags)
-
-Meldungsübersicht nach AGS
-
-Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region.
-
-### Example
-
-
-```python
-import time
-from deutschland import nina
-from deutschland.nina.api import covid_api
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
-from pprint import pprint
-# Defining the host is optional and defaults to https://warnung.bund.de/api31
-# See configuration.py for a list of all supported configuration parameters.
-configuration = nina.Configuration(
-    host = "https://warnung.bund.de/api31"
-)
-
-
-# Enter a context with an instance of the API client
-with nina.ApiClient() as api_client:
-    # Create an instance of the API class
-    api_instance = covid_api.CovidApi(api_client)
-    ags = "091620000000" # str | Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Meldungsübersicht nach AGS
-        api_response = api_instance.get_dashboard(ags)
-        pprint(api_response)
-    except nina.ApiException as e:
-        print("Exception when calling CovidApi->get_dashboard: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ags** | **str**| Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \&quot;0000000\&quot; ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden. |
-
-### Return type
-
-[**AGSOverviewResult**](AGSOverviewResult.md)
 
 ### Authorization
 
