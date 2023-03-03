@@ -395,7 +395,7 @@ paths:
 
   /archive.mowas/{identifier}-mapping.json:
     get:
-      operationId: getWarningHistory
+      operationId: getFullWarningHistory
       summary: Gesammelter Verlauf einer MOWAS Warnung
       description: Gesammelter Verlauf einer MOWAS Warnung
       tags:
