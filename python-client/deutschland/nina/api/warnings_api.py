@@ -14,7 +14,7 @@ import sys  # noqa: F401
 
 from deutschland.nina.api_client import ApiClient
 from deutschland.nina.api_client import Endpoint as _Endpoint
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
+from deutschland.nina.model.ars_overview_result import ARSOverviewResult
 from deutschland.nina.model.map_warnings import MapWarnings
 from deutschland.nina.model.warning import Warning
 from deutschland.nina.model_utils import (  # noqa: F401
@@ -71,19 +71,19 @@ class WarningsApi(object):
         )
         self.get_dashboard_endpoint = _Endpoint(
             settings={
-                "response_type": (AGSOverviewResult,),
+                "response_type": (ARSOverviewResult,),
                 "auth": [],
-                "endpoint_path": "/dashboard/{AGS}.json",
+                "endpoint_path": "/dashboard/{ARS}.json",
                 "operation_id": "get_dashboard",
                 "http_method": "GET",
                 "servers": None,
             },
             params_map={
                 "all": [
-                    "ags",
+                    "ars",
                 ],
                 "required": [
-                    "ags",
+                    "ars",
                 ],
                 "nullable": [],
                 "enum": [],
@@ -93,13 +93,13 @@ class WarningsApi(object):
                 "validations": {},
                 "allowed_values": {},
                 "openapi_types": {
-                    "ags": (str,),
+                    "ars": (str,),
                 },
                 "attribute_map": {
-                    "ags": "AGS",
+                    "ars": "ARS",
                 },
                 "location_map": {
-                    "ags": "path",
+                    "ars": "path",
                 },
                 "collection_format_map": {},
             },
@@ -414,18 +414,18 @@ class WarningsApi(object):
         kwargs["_request_auths"] = kwargs.get("_request_auths", None)
         return self.get_biwapp_map_data_endpoint.call_with_http_info(**kwargs)
 
-    def get_dashboard(self, ags, **kwargs):
-        """Meldungsübersicht nach AGS  # noqa: E501
+    def get_dashboard(self, ars, **kwargs):
+        """Meldungsübersicht nach ARS  # noqa: E501
 
         Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_dashboard(ags, async_req=True)
+        >>> thread = api.get_dashboard(ars, async_req=True)
         >>> result = thread.get()
 
         Args:
-            ags (str): Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
+            ars (str): Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -460,7 +460,7 @@ class WarningsApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AGSOverviewResult
+            ARSOverviewResult
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -474,7 +474,7 @@ class WarningsApi(object):
         kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
         kwargs["_request_auths"] = kwargs.get("_request_auths", None)
-        kwargs["ags"] = ags
+        kwargs["ars"] = ars
         return self.get_dashboard_endpoint.call_with_http_info(**kwargs)
 
     def get_dwd_map_data(self, **kwargs):

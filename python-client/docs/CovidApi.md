@@ -4,17 +4,17 @@ All URIs are relative to *https://warnung.bund.de/api31*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_ags_covid_rules**](CovidApi.md#get_ags_covid_rules) | **GET** /appdata/covid/covidrules/DE/{AGS}.json | Corona Regelungen nach AGS
+[**get_ars_covid_rules**](CovidApi.md#get_ars_covid_rules) | **GET** /appdata/covid/covidrules/DE/{ARS}.json | Corona Regelungen nach ARS
 [**get_covid_infos**](CovidApi.md#get_covid_infos) | **GET** /appdata/covid/covidinfos/DE/covidinfos.json | Allgemeine Informationen zu Corona
 [**get_covid_map**](CovidApi.md#get_covid_map) | **GET** /appdata/covid/covidmap/DE/covidmap.json | Kartendaten für Corona-Fallzahlen.
 [**get_covid_ticker**](CovidApi.md#get_covid_ticker) | **GET** /appdata/covid/covidticker/DE/covidticker.json | Covid-Ticker
 [**get_covid_ticker_message**](CovidApi.md#get_covid_ticker_message) | **GET** /appdata/covid/covidticker/DE/tickermeldungen/{id}.json | Detailinformationen zu Covid-Ticker Meldungen
 
 
-# **get_ags_covid_rules**
-> AGSCovidRules get_ags_covid_rules(ags)
+# **get_ars_covid_rules**
+> ARSCovidRules get_ars_covid_rules(ars)
 
-Corona Regelungen nach AGS
+Corona Regelungen nach ARS
 
 Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region.
 
@@ -25,7 +25,7 @@ Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region.
 import time
 from deutschland import nina
 from deutschland.nina.api import covid_api
-from deutschland.nina.model.ags_covid_rules import AGSCovidRules
+from deutschland.nina.model.ars_covid_rules import ARSCovidRules
 from pprint import pprint
 # Defining the host is optional and defaults to https://warnung.bund.de/api31
 # See configuration.py for a list of all supported configuration parameters.
@@ -38,15 +38,15 @@ configuration = nina.Configuration(
 with nina.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = covid_api.CovidApi(api_client)
-    ags = "091620000000" # str | Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+    ars = "091620000000" # str | Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
 
     # example passing only required values which don't have defaults set
     try:
-        # Corona Regelungen nach AGS
-        api_response = api_instance.get_ags_covid_rules(ags)
+        # Corona Regelungen nach ARS
+        api_response = api_instance.get_ars_covid_rules(ars)
         pprint(api_response)
     except nina.ApiException as e:
-        print("Exception when calling CovidApi->get_ags_covid_rules: %s\n" % e)
+        print("Exception when calling CovidApi->get_ars_covid_rules: %s\n" % e)
 ```
 
 
@@ -54,11 +54,11 @@ with nina.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ags** | **str**| Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. |
+ **ars** | **str**| Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \&quot;0000000\&quot; ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden. |
 
 ### Return type
 
-[**AGSCovidRules**](AGSCovidRules.md)
+[**ARSCovidRules**](ARSCovidRules.md)
 
 ### Authorization
 

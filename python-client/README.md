@@ -50,12 +50,9 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import time
 from deutschland import nina
 from pprint import pprint
-from deutschland.nina.api import covid_api
-from deutschland.nina.model.ags_covid_rules import AGSCovidRules
-from deutschland.nina.model.covid_infos import CovidInfos
-from deutschland.nina.model.covid_map import CovidMap
-from deutschland.nina.model.covid_ticker import CovidTicker
-from deutschland.nina.model.covid_ticker_message import CovidTickerMessage
+from deutschland.nina.api import archive_api
+from deutschland.nina.model.archive_warning_history import ArchiveWarningHistory
+from deutschland.nina.model.warning import Warning
 # Defining the host is optional and defaults to https://warnung.bund.de/api31
 # See configuration.py for a list of all supported configuration parameters.
 configuration = nina.Configuration(
@@ -67,15 +64,15 @@ configuration = nina.Configuration(
 # Enter a context with an instance of the API client
 with nina.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = covid_api.CovidApi(api_client)
-    ags = "091620000000" # str | Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+    api_instance = archive_api.ArchiveApi(api_client)
+    identifier = "mow.DE-NI-OL-W015-20230121-002" # str | Meldungs-ID
 
     try:
-        # Corona Regelungen nach AGS
-        api_response = api_instance.get_ags_covid_rules(ags)
+        # Gesammelter Verlauf einer MOWAS Warnung
+        api_response = api_instance.get_full_warning_history(identifier)
         pprint(api_response)
     except nina.ApiException as e:
-        print("Exception when calling CovidApi->get_ags_covid_rules: %s\n" % e)
+        print("Exception when calling ArchiveApi->get_full_warning_history: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -84,13 +81,15 @@ All URIs are relative to *https://warnung.bund.de/api31*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CovidApi* | [**get_ags_covid_rules**](docs/CovidApi.md#get_ags_covid_rules) | **GET** /appdata/covid/covidrules/DE/{AGS}.json | Corona Regelungen nach AGS
+*ArchiveApi* | [**get_full_warning_history**](docs/ArchiveApi.md#get_full_warning_history) | **GET** /archive.mowas/{identifier}-mapping.json | Gesammelter Verlauf einer MOWAS Warnung
+*ArchiveApi* | [**get_warning_history**](docs/ArchiveApi.md#get_warning_history) | **GET** /archive.mowas/{identifier}.json | Abruf einer archivierten MOWAS Warnung
+*CovidApi* | [**get_ars_covid_rules**](docs/CovidApi.md#get_ars_covid_rules) | **GET** /appdata/covid/covidrules/DE/{ARS}.json | Corona Regelungen nach ARS
 *CovidApi* | [**get_covid_infos**](docs/CovidApi.md#get_covid_infos) | **GET** /appdata/covid/covidinfos/DE/covidinfos.json | Allgemeine Informationen zu Corona
 *CovidApi* | [**get_covid_map**](docs/CovidApi.md#get_covid_map) | **GET** /appdata/covid/covidmap/DE/covidmap.json | Kartendaten für Corona-Fallzahlen.
 *CovidApi* | [**get_covid_ticker**](docs/CovidApi.md#get_covid_ticker) | **GET** /appdata/covid/covidticker/DE/covidticker.json | Covid-Ticker
 *CovidApi* | [**get_covid_ticker_message**](docs/CovidApi.md#get_covid_ticker_message) | **GET** /appdata/covid/covidticker/DE/tickermeldungen/{id}.json | Detailinformationen zu Covid-Ticker Meldungen
 *WarningsApi* | [**get_biwapp_map_data**](docs/WarningsApi.md#get_biwapp_map_data) | **GET** /biwapp/mapData.json | Biwapp Meldungen
-*WarningsApi* | [**get_dashboard**](docs/WarningsApi.md#get_dashboard) | **GET** /dashboard/{AGS}.json | Meldungsübersicht nach AGS
+*WarningsApi* | [**get_dashboard**](docs/WarningsApi.md#get_dashboard) | **GET** /dashboard/{ARS}.json | Meldungsübersicht nach ARS
 *WarningsApi* | [**get_dwd_map_data**](docs/WarningsApi.md#get_dwd_map_data) | **GET** /dwd/mapData.json | Unwetterwarnungen des Deutschen Wetterdienstes
 *WarningsApi* | [**get_katwarn_map_data**](docs/WarningsApi.md#get_katwarn_map_data) | **GET** /katwarn/mapData.json | Katwarn Meldungen
 *WarningsApi* | [**get_lhp_map_data**](docs/WarningsApi.md#get_lhp_map_data) | **GET** /lhp/mapData.json | Meldungen des Länderübergreifenden Hochwasserportals
@@ -109,26 +108,28 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [AGSCovidRules](docs/AGSCovidRules.md)
- - [AGSCovidRulesCommonInner](docs/AGSCovidRulesCommonInner.md)
- - [AGSCovidRulesLevel](docs/AGSCovidRulesLevel.md)
- - [AGSCovidRulesRegulations](docs/AGSCovidRulesRegulations.md)
- - [AGSCovidRulesRegulationsSections](docs/AGSCovidRulesRegulationsSections.md)
- - [AGSCovidRulesRegulationsSectionsBUND](docs/AGSCovidRulesRegulationsSectionsBUND.md)
- - [AGSCovidRulesRegulationsSectionsBUNDIcon](docs/AGSCovidRulesRegulationsSectionsBUNDIcon.md)
- - [AGSCovidRulesRegulationsSectionsKREIS](docs/AGSCovidRulesRegulationsSectionsKREIS.md)
- - [AGSCovidRulesRegulationsSectionsKREISIcon](docs/AGSCovidRulesRegulationsSectionsKREISIcon.md)
- - [AGSCovidRulesRegulationsSectionsLAND](docs/AGSCovidRulesRegulationsSectionsLAND.md)
- - [AGSCovidRulesRegulationsSectionsLANDIcon](docs/AGSCovidRulesRegulationsSectionsLANDIcon.md)
- - [AGSCovidRulesRulesInner](docs/AGSCovidRulesRulesInner.md)
- - [AGSCovidRulesRulesInnerIcon](docs/AGSCovidRulesRulesInnerIcon.md)
- - [AGSOverviewResult](docs/AGSOverviewResult.md)
- - [AGSOverviewResultInner](docs/AGSOverviewResultInner.md)
- - [AGSOverviewResultInnerI18nTitle](docs/AGSOverviewResultInnerI18nTitle.md)
- - [AGSOverviewResultInnerPayload](docs/AGSOverviewResultInnerPayload.md)
- - [AGSOverviewResultInnerPayloadData](docs/AGSOverviewResultInnerPayloadData.md)
- - [AGSOverviewResultInnerPayloadDataArea](docs/AGSOverviewResultInnerPayloadDataArea.md)
- - [AGSOverviewResultInnerPayloadDataTransKeys](docs/AGSOverviewResultInnerPayloadDataTransKeys.md)
+ - [ARSCovidRules](docs/ARSCovidRules.md)
+ - [ARSCovidRulesCommonInner](docs/ARSCovidRulesCommonInner.md)
+ - [ARSCovidRulesLevel](docs/ARSCovidRulesLevel.md)
+ - [ARSCovidRulesRegulations](docs/ARSCovidRulesRegulations.md)
+ - [ARSCovidRulesRegulationsSections](docs/ARSCovidRulesRegulationsSections.md)
+ - [ARSCovidRulesRegulationsSectionsBUND](docs/ARSCovidRulesRegulationsSectionsBUND.md)
+ - [ARSCovidRulesRegulationsSectionsBUNDIcon](docs/ARSCovidRulesRegulationsSectionsBUNDIcon.md)
+ - [ARSCovidRulesRegulationsSectionsKREIS](docs/ARSCovidRulesRegulationsSectionsKREIS.md)
+ - [ARSCovidRulesRegulationsSectionsKREISIcon](docs/ARSCovidRulesRegulationsSectionsKREISIcon.md)
+ - [ARSCovidRulesRegulationsSectionsLAND](docs/ARSCovidRulesRegulationsSectionsLAND.md)
+ - [ARSCovidRulesRegulationsSectionsLANDIcon](docs/ARSCovidRulesRegulationsSectionsLANDIcon.md)
+ - [ARSCovidRulesRulesInner](docs/ARSCovidRulesRulesInner.md)
+ - [ARSCovidRulesRulesInnerIcon](docs/ARSCovidRulesRulesInnerIcon.md)
+ - [ARSOverviewResult](docs/ARSOverviewResult.md)
+ - [ARSOverviewResultInner](docs/ARSOverviewResultInner.md)
+ - [ARSOverviewResultInnerI18nTitle](docs/ARSOverviewResultInnerI18nTitle.md)
+ - [ARSOverviewResultInnerPayload](docs/ARSOverviewResultInnerPayload.md)
+ - [ARSOverviewResultInnerPayloadData](docs/ARSOverviewResultInnerPayloadData.md)
+ - [ARSOverviewResultInnerPayloadDataArea](docs/ARSOverviewResultInnerPayloadDataArea.md)
+ - [ARSOverviewResultInnerPayloadDataTransKeys](docs/ARSOverviewResultInnerPayloadDataTransKeys.md)
+ - [ArchiveWarningHistory](docs/ArchiveWarningHistory.md)
+ - [ArchiveWarningHistoryHistoryInner](docs/ArchiveWarningHistoryHistoryInner.md)
  - [CovidInfos](docs/CovidInfos.md)
  - [CovidInfosArticle](docs/CovidInfosArticle.md)
  - [CovidInfosCategory](docs/CovidInfosCategory.md)

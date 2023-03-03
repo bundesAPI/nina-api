@@ -4,162 +4,178 @@ nina.model package
 Submodules
 ----------
 
-nina.model.ags\_covid\_rules module
------------------------------------
+nina.model.archive\_warning\_history module
+-------------------------------------------
 
-.. automodule:: nina.model.ags_covid_rules
+.. automodule:: nina.model.archive_warning_history
    :members:
    :undoc-members:
    :show-inheritance:
 
-nina.model.ags\_covid\_rules\_common\_inner module
---------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_common_inner
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_level module
-------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_level
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations module
-------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections module
-----------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections\_bund module
-----------------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections_bund
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections\_bund\_icon module
-----------------------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections_bund_icon
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections\_kreis module
------------------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections_kreis
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections\_kreis\_icon module
------------------------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections_kreis_icon
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections\_land module
-----------------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections_land
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_regulations\_sections\_land\_icon module
-----------------------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_regulations_sections_land_icon
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_rules\_inner module
--------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_rules_inner
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_covid\_rules\_rules\_inner\_icon module
--------------------------------------------------------
-
-.. automodule:: nina.model.ags_covid_rules_rules_inner_icon
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_overview\_result module
----------------------------------------
-
-.. automodule:: nina.model.ags_overview_result
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_overview\_result\_inner module
-----------------------------------------------
-
-.. automodule:: nina.model.ags_overview_result_inner
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-nina.model.ags\_overview\_result\_inner\_i18n\_title module
+nina.model.archive\_warning\_history\_history\_inner module
 -----------------------------------------------------------
 
-.. automodule:: nina.model.ags_overview_result_inner_i18n_title
+.. automodule:: nina.model.archive_warning_history_history_inner
    :members:
    :undoc-members:
    :show-inheritance:
 
-nina.model.ags\_overview\_result\_inner\_payload module
+nina.model.ars\_covid\_rules module
+-----------------------------------
+
+.. automodule:: nina.model.ars_covid_rules
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_common\_inner module
+--------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_common_inner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_level module
+------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_level
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations module
+------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections module
+----------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections\_bund module
+----------------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections_bund
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections\_bund\_icon module
+----------------------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections_bund_icon
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections\_kreis module
+-----------------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections_kreis
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections\_kreis\_icon module
+-----------------------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections_kreis_icon
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections\_land module
+----------------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections_land
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_regulations\_sections\_land\_icon module
+----------------------------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_regulations_sections_land_icon
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_rules\_inner module
+-------------------------------------------------
+
+.. automodule:: nina.model.ars_covid_rules_rules_inner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_covid\_rules\_rules\_inner\_icon module
 -------------------------------------------------------
 
-.. automodule:: nina.model.ags_overview_result_inner_payload
+.. automodule:: nina.model.ars_covid_rules_rules_inner_icon
    :members:
    :undoc-members:
    :show-inheritance:
 
-nina.model.ags\_overview\_result\_inner\_payload\_data module
+nina.model.ars\_overview\_result module
+---------------------------------------
+
+.. automodule:: nina.model.ars_overview_result
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_overview\_result\_inner module
+----------------------------------------------
+
+.. automodule:: nina.model.ars_overview_result_inner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_overview\_result\_inner\_i18n\_title module
+-----------------------------------------------------------
+
+.. automodule:: nina.model.ars_overview_result_inner_i18n_title
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_overview\_result\_inner\_payload module
+-------------------------------------------------------
+
+.. automodule:: nina.model.ars_overview_result_inner_payload
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.ars\_overview\_result\_inner\_payload\_data module
 -------------------------------------------------------------
 
-.. automodule:: nina.model.ags_overview_result_inner_payload_data
+.. automodule:: nina.model.ars_overview_result_inner_payload_data
    :members:
    :undoc-members:
    :show-inheritance:
 
-nina.model.ags\_overview\_result\_inner\_payload\_data\_area module
+nina.model.ars\_overview\_result\_inner\_payload\_data\_area module
 -------------------------------------------------------------------
 
-.. automodule:: nina.model.ags_overview_result_inner_payload_data_area
+.. automodule:: nina.model.ars_overview_result_inner_payload_data_area
    :members:
    :undoc-members:
    :show-inheritance:
 
-nina.model.ags\_overview\_result\_inner\_payload\_data\_trans\_keys module
+nina.model.ars\_overview\_result\_inner\_payload\_data\_trans\_keys module
 --------------------------------------------------------------------------
 
-.. automodule:: nina.model.ags_overview_result_inner_payload_data_trans_keys
+.. automodule:: nina.model.ars_overview_result_inner_payload_data_trans_keys
    :members:
    :undoc-members:
    :show-inheritance:

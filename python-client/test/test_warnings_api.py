@@ -35,7 +35,7 @@ class TestWarningsApi(unittest.TestCase):
     def test_get_dashboard(self):
         """Test case for get_dashboard
 
-        Meldungsübersicht nach AGS  # noqa: E501
+        Meldungsübersicht nach ARS  # noqa: E501
         """
         pass
 

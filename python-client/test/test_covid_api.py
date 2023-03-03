@@ -25,10 +25,10 @@ class TestCovidApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_get_ags_covid_rules(self):
-        """Test case for get_ags_covid_rules
+    def test_get_ars_covid_rules(self):
+        """Test case for get_ars_covid_rules
 
-        Corona Regelungen nach AGS  # noqa: E501
+        Corona Regelungen nach ARS  # noqa: E501
         """
         pass
 

@@ -4,6 +4,14 @@ nina.api package
 Submodules
 ----------
 
+nina.api.archive\_api module
+----------------------------
+
+.. automodule:: nina.api.archive_api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 nina.api.covid\_api module
 --------------------------
 

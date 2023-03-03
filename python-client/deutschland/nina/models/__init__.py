@@ -9,51 +9,55 @@
 # import sys
 # sys.setrecursionlimit(n)
 
-from deutschland.nina.model.ags_covid_rules import AGSCovidRules
-from deutschland.nina.model.ags_covid_rules_common_inner import AGSCovidRulesCommonInner
-from deutschland.nina.model.ags_covid_rules_level import AGSCovidRulesLevel
-from deutschland.nina.model.ags_covid_rules_regulations import AGSCovidRulesRegulations
-from deutschland.nina.model.ags_covid_rules_regulations_sections import (
-    AGSCovidRulesRegulationsSections,
+from deutschland.nina.model.archive_warning_history import ArchiveWarningHistory
+from deutschland.nina.model.archive_warning_history_history_inner import (
+    ArchiveWarningHistoryHistoryInner,
 )
-from deutschland.nina.model.ags_covid_rules_regulations_sections_bund import (
-    AGSCovidRulesRegulationsSectionsBUND,
+from deutschland.nina.model.ars_covid_rules import ARSCovidRules
+from deutschland.nina.model.ars_covid_rules_common_inner import ARSCovidRulesCommonInner
+from deutschland.nina.model.ars_covid_rules_level import ARSCovidRulesLevel
+from deutschland.nina.model.ars_covid_rules_regulations import ARSCovidRulesRegulations
+from deutschland.nina.model.ars_covid_rules_regulations_sections import (
+    ARSCovidRulesRegulationsSections,
 )
-from deutschland.nina.model.ags_covid_rules_regulations_sections_bund_icon import (
-    AGSCovidRulesRegulationsSectionsBUNDIcon,
+from deutschland.nina.model.ars_covid_rules_regulations_sections_bund import (
+    ARSCovidRulesRegulationsSectionsBUND,
 )
-from deutschland.nina.model.ags_covid_rules_regulations_sections_kreis import (
-    AGSCovidRulesRegulationsSectionsKREIS,
+from deutschland.nina.model.ars_covid_rules_regulations_sections_bund_icon import (
+    ARSCovidRulesRegulationsSectionsBUNDIcon,
 )
-from deutschland.nina.model.ags_covid_rules_regulations_sections_kreis_icon import (
-    AGSCovidRulesRegulationsSectionsKREISIcon,
+from deutschland.nina.model.ars_covid_rules_regulations_sections_kreis import (
+    ARSCovidRulesRegulationsSectionsKREIS,
 )
-from deutschland.nina.model.ags_covid_rules_regulations_sections_land import (
-    AGSCovidRulesRegulationsSectionsLAND,
+from deutschland.nina.model.ars_covid_rules_regulations_sections_kreis_icon import (
+    ARSCovidRulesRegulationsSectionsKREISIcon,
 )
-from deutschland.nina.model.ags_covid_rules_regulations_sections_land_icon import (
-    AGSCovidRulesRegulationsSectionsLANDIcon,
+from deutschland.nina.model.ars_covid_rules_regulations_sections_land import (
+    ARSCovidRulesRegulationsSectionsLAND,
 )
-from deutschland.nina.model.ags_covid_rules_rules_inner import AGSCovidRulesRulesInner
-from deutschland.nina.model.ags_covid_rules_rules_inner_icon import (
-    AGSCovidRulesRulesInnerIcon,
+from deutschland.nina.model.ars_covid_rules_regulations_sections_land_icon import (
+    ARSCovidRulesRegulationsSectionsLANDIcon,
 )
-from deutschland.nina.model.ags_overview_result import AGSOverviewResult
-from deutschland.nina.model.ags_overview_result_inner import AGSOverviewResultInner
-from deutschland.nina.model.ags_overview_result_inner_i18n_title import (
-    AGSOverviewResultInnerI18nTitle,
+from deutschland.nina.model.ars_covid_rules_rules_inner import ARSCovidRulesRulesInner
+from deutschland.nina.model.ars_covid_rules_rules_inner_icon import (
+    ARSCovidRulesRulesInnerIcon,
 )
-from deutschland.nina.model.ags_overview_result_inner_payload import (
-    AGSOverviewResultInnerPayload,
+from deutschland.nina.model.ars_overview_result import ARSOverviewResult
+from deutschland.nina.model.ars_overview_result_inner import ARSOverviewResultInner
+from deutschland.nina.model.ars_overview_result_inner_i18n_title import (
+    ARSOverviewResultInnerI18nTitle,
 )
-from deutschland.nina.model.ags_overview_result_inner_payload_data import (
-    AGSOverviewResultInnerPayloadData,
+from deutschland.nina.model.ars_overview_result_inner_payload import (
+    ARSOverviewResultInnerPayload,
 )
-from deutschland.nina.model.ags_overview_result_inner_payload_data_area import (
-    AGSOverviewResultInnerPayloadDataArea,
+from deutschland.nina.model.ars_overview_result_inner_payload_data import (
+    ARSOverviewResultInnerPayloadData,
 )
-from deutschland.nina.model.ags_overview_result_inner_payload_data_trans_keys import (
-    AGSOverviewResultInnerPayloadDataTransKeys,
+from deutschland.nina.model.ars_overview_result_inner_payload_data_area import (
+    ARSOverviewResultInnerPayloadDataArea,
+)
+from deutschland.nina.model.ars_overview_result_inner_payload_data_trans_keys import (
+    ARSOverviewResultInnerPayloadDataTransKeys,
 )
 from deutschland.nina.model.covid_infos import CovidInfos
 from deutschland.nina.model.covid_infos_article import CovidInfosArticle

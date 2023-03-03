@@ -902,11 +902,11 @@ class Endpoint(object):
         """This method is invoked when endpoints are called
         Example:
 
-        api_instance = CovidApi()
-        api_instance.get_ags_covid_rules  # this is an instance of the class Endpoint
-        api_instance.get_ags_covid_rules()  # this invokes api_instance.get_ags_covid_rules.__call__()
+        api_instance = ArchiveApi()
+        api_instance.get_full_warning_history  # this is an instance of the class Endpoint
+        api_instance.get_full_warning_history()  # this invokes api_instance.get_full_warning_history.__call__()
         which then invokes the callable functions stored in that endpoint at
-        api_instance.get_ags_covid_rules.callable or self.callable in this class
+        api_instance.get_full_warning_history.callable or self.callable in this class
 
         """
         return self.callable(self, *args, **kwargs)

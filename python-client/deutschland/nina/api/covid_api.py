@@ -14,7 +14,7 @@ import sys  # noqa: F401
 
 from deutschland.nina.api_client import ApiClient
 from deutschland.nina.api_client import Endpoint as _Endpoint
-from deutschland.nina.model.ags_covid_rules import AGSCovidRules
+from deutschland.nina.model.ars_covid_rules import ARSCovidRules
 from deutschland.nina.model.covid_infos import CovidInfos
 from deutschland.nina.model.covid_map import CovidMap
 from deutschland.nina.model.covid_ticker import CovidTicker
@@ -41,21 +41,21 @@ class CovidApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.get_ags_covid_rules_endpoint = _Endpoint(
+        self.get_ars_covid_rules_endpoint = _Endpoint(
             settings={
-                "response_type": (AGSCovidRules,),
+                "response_type": (ARSCovidRules,),
                 "auth": [],
-                "endpoint_path": "/appdata/covid/covidrules/DE/{AGS}.json",
-                "operation_id": "get_ags_covid_rules",
+                "endpoint_path": "/appdata/covid/covidrules/DE/{ARS}.json",
+                "operation_id": "get_ars_covid_rules",
                 "http_method": "GET",
                 "servers": None,
             },
             params_map={
                 "all": [
-                    "ags",
+                    "ars",
                 ],
                 "required": [
-                    "ags",
+                    "ars",
                 ],
                 "nullable": [],
                 "enum": [],
@@ -65,13 +65,13 @@ class CovidApi(object):
                 "validations": {},
                 "allowed_values": {},
                 "openapi_types": {
-                    "ags": (str,),
+                    "ars": (str,),
                 },
                 "attribute_map": {
-                    "ags": "AGS",
+                    "ars": "ARS",
                 },
                 "location_map": {
-                    "ags": "path",
+                    "ars": "path",
                 },
                 "collection_format_map": {},
             },
@@ -212,18 +212,18 @@ class CovidApi(object):
             api_client=api_client,
         )
 
-    def get_ags_covid_rules(self, ags, **kwargs):
-        """Corona Regelungen nach AGS  # noqa: E501
+    def get_ars_covid_rules(self, ars, **kwargs):
+        """Corona Regelungen nach ARS  # noqa: E501
 
         Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_ags_covid_rules(ags, async_req=True)
+        >>> thread = api.get_ars_covid_rules(ars, async_req=True)
         >>> result = thread.get()
 
         Args:
-            ags (str): Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+            ars (str): Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -258,7 +258,7 @@ class CovidApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AGSCovidRules
+            ARSCovidRules
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -272,8 +272,8 @@ class CovidApi(object):
         kwargs["_content_type"] = kwargs.get("_content_type")
         kwargs["_host_index"] = kwargs.get("_host_index")
         kwargs["_request_auths"] = kwargs.get("_request_auths", None)
-        kwargs["ags"] = ags
-        return self.get_ags_covid_rules_endpoint.call_with_http_info(**kwargs)
+        kwargs["ars"] = ars
+        return self.get_ars_covid_rules_endpoint.call_with_http_info(**kwargs)
 
     def get_covid_infos(self, **kwargs):
         """Allgemeine Informationen zu Corona  # noqa: E501
