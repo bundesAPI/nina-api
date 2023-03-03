@@ -11,7 +11,7 @@
 """
 
 
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 
 # import ApiClient
 from deutschland.nina.api_client import ApiClient
