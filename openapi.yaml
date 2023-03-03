@@ -13,12 +13,13 @@ tags:
   - name: Warnings
   - name: Covid
   - name: default
+  - name: Archive
 
 paths:
-  /dashboard/{AGS}.json:
+  /dashboard/{ARS}.json:
     get:
       operationId: getDashboard
-      summary: Meldungsübersicht nach AGS
+      summary: Meldungsübersicht nach ARS
       description: "Erhalten Sie die aktuellen Warnmeldungen für eine bestimmte Region."
       tags:
         - Warnings
@@ -28,20 +29,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AGSOverviewResult"
+                $ref: "#/components/schemas/ARSOverviewResult"
       parameters:
         - in: path
           required: true
-          name: AGS
+          name: ARS
           schema:
             type: string
-          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel) bereitgestellt werden.
+          description: Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
           example: "091620000000"
 
-  /appdata/covid/covidrules/DE/{AGS}.json:
+  /appdata/covid/covidrules/DE/{ARS}.json:
     get:
-      operationId: getAGSCovidRules
-      summary: Corona Regelungen nach AGS
+      operationId: getARSCovidRules
+      summary: Corona Regelungen nach ARS
       description: "Erhalten Sie die aktuellen Corona Regelungen für eine bestimmte Region."
       tags:
         - Covid
@@ -51,14 +52,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AGSCovidRules"
+                $ref: "#/components/schemas/ARSCovidRules"
       parameters:
         - in: path
           required: true
-          name: AGS
+          name: ARS
           schema:
             type: string
-          description: Amtlicher Gebietsschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden.
+          description: Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
           example: "091620000000"
 
   /appdata/covid/covidinfos/DE/covidinfos.json:
@@ -392,6 +393,52 @@ paths:
               schema:
                 $ref: "#/components/schemas/MapWarnings"
 
+  /archive.mowas/{identifier}-mapping.json:
+    get:
+      operationId: getWarningHistory
+      summary: Gesammelter Verlauf einer MOWAS Warnung
+      description: Gesammelter Verlauf einer MOWAS Warnung
+      tags:
+        - Archive
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArchiveWarningHistory"
+      parameters:
+        - in: path
+          required: true
+          name: identifier
+          schema:
+            type: string
+          description: Meldungs-ID
+          example: mow.DE-NI-OL-W015-20230121-002
+
+  /archive.mowas/{identifier}.json:
+    get:
+      operationId: getWarningHistory
+      summary: Abruf einer archivierten MOWAS Warnung
+      description: Abruf einer archivierten MOWAS Warnung
+      tags:
+        - Archive
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Warning"
+      parameters:
+        - in: path
+          required: true
+          name: identifier
+          schema:
+            type: string
+          description: Meldungs-ID, gefolgt von "_" mit angehangenem Zeitstempel der Warnung im Format YYYYMMDDHHMMSS
+          example: mow.DE-NI-OL-W015-20230121-001_20230121112659
+
 components:
   schemas:
     MapWarnings:
@@ -422,7 +469,8 @@ components:
               de:
                 type: string
                 example: "Burgenlandkreis meldet: Warnung Sonderfall. Gültig ab 10.07.2021 11:58."
-    AGSOverviewResult:
+
+    ARSOverviewResult:
       type: array
       items:
         type: object
@@ -488,7 +536,7 @@ components:
             format: date-time
             example: 2020-10-14T16:35:21+02:00
 
-    AGSCovidRules:
+    ARSCovidRules:
       type: object
       properties:
         key:
@@ -1263,3 +1311,25 @@ components:
           value:
             type: string
             example: BBK-ISC-132
+
+    ArchiveWarningHistory:
+      type: object
+      properties:
+        history:
+          type: array
+          items: 
+            type: object
+            properties:
+              identifier:
+                type: string
+                example: mow.DE-NI-OL-W015-20230121-001_20230121112659.json
+              msgType:
+                type: string
+                example: ALERT
+              sent:
+                type: string
+                format: date-time
+                example: 2023-01-21T11:26:59+01:00
+              headline:
+                type: string
+                example: Rauchentwicklung und Geruchsbelästigung nach Großbrand - Westerstede, Halsbek
