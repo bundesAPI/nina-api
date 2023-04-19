@@ -439,6 +439,29 @@ paths:
           description: Meldungs-ID, gefolgt von "_" mit angehangenem Zeitstempel der Warnung im Format YYYYMMDDHHMMSS
           example: mow.DE-NI-OL-W015-20230121-001_20230121112659
 
+  /mowas/rss/{ARS}.rss:
+    get:
+      operationId: getMoWaSRSSFeed
+      summary: MoWaS Meldungen als RSS-Feed
+      description: Erhalte alle aktuellen MoWaS Meldungen einer Region als RSS-Feed.
+      tags:
+        - Warnings
+      responses:
+        "200":
+          description: OK
+          content:
+            application/rss+xml:
+              schema:
+                $ref: "#/components/schemas/rss"
+      parameters:
+        - in: path
+          required: true
+          name: ARS
+          schema:
+            type: string
+          description: Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit "0000000" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
+          example: "091620000000"
+
 components:
   schemas:
     MapWarnings:
@@ -535,6 +558,80 @@ components:
             type: string
             format: date-time
             example: 2020-10-14T16:35:21+02:00
+
+    rss:
+      type: object
+      properties:
+        version:
+          type: string
+          example: "2.0"
+          xml:
+            attribute: true
+        channel:
+          type: object
+          properties:
+            title:
+              type: string
+              example: Aktuelle Bevölkerungsschutz-Warnungen (Städteregion Aachen)
+            link:
+              type: string
+              format: url
+              example: https://warnung.bund.de
+            description:
+              type: string
+              example: Aktuell vorliegende Warnmeldungen - MoWaS
+            pubDate:
+              type: string
+              format: date-time
+              example: Tue, 04 Apr 2023 20:38:30 +0200
+            image:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Aktuelle Bevölkerungsschutz-Warnungen (Städteregion Aachen)
+                link:
+                  type: string
+                  format: url
+                  example: https://warnung.bund.de
+                url:
+                  type: string
+                  format: url
+                  example: https://warnung.bund.de/assets/images/icons/ic_mowa.png
+            item:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: "Entwarnung: Rauchgase - Eschweiler-Röthgen"
+                  link:
+                    type: string
+                    format: url
+                    example: https://warnung.bund.de/meldung/mow.DE-NW-AC-SE090-20230404-90-001/Entwarnung:_Rauchgase_-_Eschweiler-R%C3%B6thgen
+                  pubDate:
+                      type: string
+                      format: date-time
+                      example: Tue, 04 Apr 2023 20:38:30 +0200
+                  guid:
+                    type: string
+                    example: b2c4bf09f14192dce01f7364c0845b81daf815fca5967f015c880932c1480b56
+                    properties:
+                      isPermaLink:
+                        type: string
+                        example: false
+                        xml:
+                          attribute: true
+                  description:
+                    type: string
+                    example: 'Dies ist die Entwarnung zur Warnung "Rauchgase - Eschweiler-Röthgen" vom 04.04.2023 18:56:51 gesendet durch LS Aachen, Städteregion (DEU, NW, Aachen). (Hier kommen Beschreibung und Handlungsanweisungen)
+
+      ---
+Diese Warnmeldung stammt aus dem Modularen Warnsystem (MoWaS) des Bundesamtes für Bevölkerungsschutz und Katastrophenhilfe.
+Sie darf nur inhaltlich unverändert und nicht zu gewerblichen Zwecken verwendet werden.
+Um die Authentizität der Warnmeldung zu überprüfen gehen Sie auf https://warnung.bund.de.
+Eine Einschränkung oder (zeitweise) Einstellung des RSS-Feeds ist z.B. für technische Wartungen jederzeit und ohne vorherige Ankündigung möglich.'
 
     ARSCovidRules:
       type: object
