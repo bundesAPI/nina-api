@@ -58,6 +58,10 @@ docs/NotfalltippsCategory.md
 docs/NotfalltippsCollection.md
 docs/NotfalltippsImage.md
 docs/NotfalltippsTip.md
+docs/Rss.md
+docs/RssChannel.md
+docs/RssChannelImage.md
+docs/RssChannelItemInner.md
 docs/Version.md
 docs/VersionCollection.md
 docs/Warning.md
@@ -127,6 +131,10 @@ nina/model/notfalltipps_category.py
 nina/model/notfalltipps_collection.py
 nina/model/notfalltipps_image.py
 nina/model/notfalltipps_tip.py
+nina/model/rss.py
+nina/model/rss_channel.py
+nina/model/rss_channel_image.py
+nina/model/rss_channel_item_inner.py
 nina/model/version.py
 nina/model/version_collection.py
 nina/model/warning.py
@@ -197,6 +205,10 @@ test/test_notfalltipps_category.py
 test/test_notfalltipps_collection.py
 test/test_notfalltipps_image.py
 test/test_notfalltipps_tip.py
+test/test_rss.py
+test/test_rss_channel.py
+test/test_rss_channel_image.py
+test/test_rss_channel_item_inner.py
 test/test_version.py
 test/test_version_collection.py
 test/test_warning.py
