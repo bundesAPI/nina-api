@@ -90,6 +90,10 @@ from deutschland.nina.model.notfalltipps_category import NotfalltippsCategory
 from deutschland.nina.model.notfalltipps_collection import NotfalltippsCollection
 from deutschland.nina.model.notfalltipps_image import NotfalltippsImage
 from deutschland.nina.model.notfalltipps_tip import NotfalltippsTip
+from deutschland.nina.model.rss import Rss
+from deutschland.nina.model.rss_channel import RssChannel
+from deutschland.nina.model.rss_channel_image import RssChannelImage
+from deutschland.nina.model.rss_channel_item_inner import RssChannelItemInner
 from deutschland.nina.model.version import Version
 from deutschland.nina.model.version_collection import VersionCollection
 from deutschland.nina.model.warning import Warning

@@ -93,6 +93,7 @@ Class | Method | HTTP request | Description
 *WarningsApi* | [**get_dwd_map_data**](docs/WarningsApi.md#get_dwd_map_data) | **GET** /dwd/mapData.json | Unwetterwarnungen des Deutschen Wetterdienstes
 *WarningsApi* | [**get_katwarn_map_data**](docs/WarningsApi.md#get_katwarn_map_data) | **GET** /katwarn/mapData.json | Katwarn Meldungen
 *WarningsApi* | [**get_lhp_map_data**](docs/WarningsApi.md#get_lhp_map_data) | **GET** /lhp/mapData.json | Meldungen des Länderübergreifenden Hochwasserportals
+*WarningsApi* | [**get_mo_wa_srss_feed**](docs/WarningsApi.md#get_mo_wa_srss_feed) | **GET** /mowas/rss/{ARS}.rss | MoWaS Meldungen als RSS-Feed
 *WarningsApi* | [**get_mowas_map_data**](docs/WarningsApi.md#get_mowas_map_data) | **GET** /mowas/mapData.json | Mowas Meldungen
 *WarningsApi* | [**get_police_map_data**](docs/WarningsApi.md#get_police_map_data) | **GET** /police/mapData.json | Polizeimeldungen
 *WarningsApi* | [**get_warning**](docs/WarningsApi.md#get_warning) | **GET** /warnings/{identifier}.json | Detailinformation zu einer Warnung
@@ -159,6 +160,10 @@ Class | Method | HTTP request | Description
  - [NotfalltippsCollection](docs/NotfalltippsCollection.md)
  - [NotfalltippsImage](docs/NotfalltippsImage.md)
  - [NotfalltippsTip](docs/NotfalltippsTip.md)
+ - [Rss](docs/Rss.md)
+ - [RssChannel](docs/RssChannel.md)
+ - [RssChannelImage](docs/RssChannelImage.md)
+ - [RssChannelItemInner](docs/RssChannelItemInner.md)
  - [Version](docs/Version.md)
  - [VersionCollection](docs/VersionCollection.md)
  - [Warning](docs/Warning.md)

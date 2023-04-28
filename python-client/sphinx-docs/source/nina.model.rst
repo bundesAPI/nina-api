@@ -412,6 +412,38 @@ nina.model.notfalltipps\_tip module
    :undoc-members:
    :show-inheritance:
 
+nina.model.rss module
+---------------------
+
+.. automodule:: nina.model.rss
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.rss\_channel module
+------------------------------
+
+.. automodule:: nina.model.rss_channel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.rss\_channel\_image module
+-------------------------------------
+
+.. automodule:: nina.model.rss_channel_image
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+nina.model.rss\_channel\_item\_inner module
+-------------------------------------------
+
+.. automodule:: nina.model.rss_channel_item_inner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 nina.model.version module
 -------------------------
 

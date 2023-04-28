@@ -60,6 +60,13 @@ class TestWarningsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_mo_wa_srss_feed(self):
+        """Test case for get_mo_wa_srss_feed
+
+        MoWaS Meldungen als RSS-Feed  # noqa: E501
+        """
+        pass
+
     def test_get_mowas_map_data(self):
         """Test case for get_mowas_map_data
 

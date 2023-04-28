@@ -582,7 +582,6 @@ components:
               example: Aktuell vorliegende Warnmeldungen - MoWaS
             pubDate:
               type: string
-              format: date-time
               example: Tue, 04 Apr 2023 20:38:30 +0200
             image:
               type: object
@@ -612,7 +611,6 @@ components:
                     example: https://warnung.bund.de/meldung/mow.DE-NW-AC-SE090-20230404-90-001/Entwarnung:_Rauchgase_-_Eschweiler-R%C3%B6thgen
                   pubDate:
                       type: string
-                      format: date-time
                       example: Tue, 04 Apr 2023 20:38:30 +0200
                   guid:
                     type: string
@@ -620,7 +618,7 @@ components:
                     properties:
                       isPermaLink:
                         type: string
-                        example: false
+                        example: "false"
                         xml:
                           attribute: true
                   description:

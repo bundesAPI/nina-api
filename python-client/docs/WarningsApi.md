@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_dwd_map_data**](WarningsApi.md#get_dwd_map_data) | **GET** /dwd/mapData.json | Unwetterwarnungen des Deutschen Wetterdienstes
 [**get_katwarn_map_data**](WarningsApi.md#get_katwarn_map_data) | **GET** /katwarn/mapData.json | Katwarn Meldungen
 [**get_lhp_map_data**](WarningsApi.md#get_lhp_map_data) | **GET** /lhp/mapData.json | Meldungen des Länderübergreifenden Hochwasserportals
+[**get_mo_wa_srss_feed**](WarningsApi.md#get_mo_wa_srss_feed) | **GET** /mowas/rss/{ARS}.rss | MoWaS Meldungen als RSS-Feed
 [**get_mowas_map_data**](WarningsApi.md#get_mowas_map_data) | **GET** /mowas/mapData.json | Mowas Meldungen
 [**get_police_map_data**](WarningsApi.md#get_police_map_data) | **GET** /police/mapData.json | Polizeimeldungen
 [**get_warning**](WarningsApi.md#get_warning) | **GET** /warnings/{identifier}.json | Detailinformation zu einer Warnung
@@ -324,6 +325,73 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_mo_wa_srss_feed**
+> Rss get_mo_wa_srss_feed(ars)
+
+MoWaS Meldungen als RSS-Feed
+
+Erhalte alle aktuellen MoWaS Meldungen einer Region als RSS-Feed.
+
+### Example
+
+
+```python
+import time
+from deutschland import nina
+from deutschland.nina.api import warnings_api
+from deutschland.nina.model.rss import Rss
+from pprint import pprint
+# Defining the host is optional and defaults to https://warnung.bund.de/api31
+# See configuration.py for a list of all supported configuration parameters.
+configuration = nina.Configuration(
+    host = "https://warnung.bund.de/api31"
+)
+
+
+# Enter a context with an instance of the API client
+with nina.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = warnings_api.WarningsApi(api_client)
+    ars = "091620000000" # str | Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \"0000000\" ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # MoWaS Meldungen als RSS-Feed
+        api_response = api_instance.get_mo_wa_srss_feed(ars)
+        pprint(api_response)
+    except nina.ApiException as e:
+        print("Exception when calling WarningsApi->get_mo_wa_srss_feed: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ars** | **str**| Amtlicher Regionalschlüssel - kann z.B. von [hier](https://www.xrepository.de/api/xrepository/urn:de:bund:destatis:bevoelkerungsstatistik:schluessel:rs_2021-07-31/download/Regionalschl_ssel_2021-07-31.json) bezogen werden. Die Letzten 7 Stellen müssen dabei mit \&quot;0000000\&quot; ersetzt werden, weil die Daten nur auf [Kreisebene](https://de.wikipedia.org/wiki/Amtlicher_Gemeindeschl%C3%BCssel#Regionalschl%C3%BCssel) bereitgestellt werden. |
+
+### Return type
+
+[**Rss**](Rss.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/rss+xml
 
 
 ### HTTP response details
